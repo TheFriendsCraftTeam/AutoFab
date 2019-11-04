@@ -1,0 +1,970 @@
+[gd_scene load_steps=71 format=2]
+
+[ext_resource path="res://MainTab/Main Tab.gd" type="Script" id=1]
+[ext_resource path="res://MainTab/Camera3D.gd" type="Script" id=2]
+[ext_resource path="res://MainTab/Rotation planet.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Textures/Misc/disk3.svg" type="Texture" id=4]
+[ext_resource path="res://Assets/Textures/Misc/disk2.svg" type="Texture" id=5]
+[ext_resource path="res://Assets/Textures/Misc/disk1.svg" type="Texture" id=6]
+[ext_resource path="res://MainTab/Camera.gd" type="Script" id=7]
+[ext_resource path="res://MainTab/GUI.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Textures/Misc/Logo.svg" type="Texture" id=9]
+[ext_resource path="res://Assets/Instances/GUI/Buttons/BlurMaskButton.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/MusicAndSounds/Effects/GUI/Click.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/MusicAndSounds/Effects/GUI/Back.wav" type="AudioStream" id=12]
+[ext_resource path="res://MainTab/Label.gd" type="Script" id=13]
+[ext_resource path="res://Assets/MusicAndSounds/Effects/GUI/Ok.wav" type="AudioStream" id=14]
+[ext_resource path="res://Assets/Instances/GUI/Mouse.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/MusicAndSounds/MainTheme.ogg" type="AudioStream" id=16]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Options"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.00028817, 0.5 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ Vector3( -28.2564, 137.672, -0.561173 ), Transform( -0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, 0.353553, -0.612372, 50, 50, -50 ), Transform( -0.887241, -0.441712, 0.133022, -0.262003, 0.719846, 0.642788, -0.379682, 0.535455, -0.754407, 50, 50, -50 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Play"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector3( -30, 135, 0 ), Vector3( -20, 100, 20 ) ]
+}
+
+[sub_resource type="VisualShaderNodeVec3Constant" id=3]
+constant = Vector3( 1, 0.03, 0 )
+
+[sub_resource type="VisualShaderNodeScalarOp" id=4]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id=5]
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=6]
+function = 1
+
+[sub_resource type="VisualShaderNodeScalarOp" id=7]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=8]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarOp" id=9]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarOp" id=10]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarOp" id=11]
+
+[sub_resource type="VisualShaderNodeInput" id=12]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeScalarOp" id=13]
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=14]
+function = 1
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=15]
+function = 1
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id=16]
+
+[sub_resource type="VisualShaderNodeInput" id=17]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=18]
+constant = 0.6
+
+[sub_resource type="VisualShaderNodeScalarOp" id=19]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=20]
+
+[sub_resource type="VisualShader" id=21]
+code = "shader_type spatial;
+render_mode diffuse_toon, specular_toon, shadows_disabled, ambient_light_disabled;
+
+
+
+
+void vertex() {
+// Input:2
+	vec3 n_out2p0;
+	n_out2p0 = VERTEX;
+
+// VectorDecompose:3
+	float n_out3p0;
+	float n_out3p1;
+	float n_out3p2;
+	n_out3p0 = n_out2p0.x;
+	n_out3p1 = n_out2p0.y;
+	n_out3p2 = n_out2p0.z;
+
+// Scalar:7
+	float n_out7p0;
+	n_out7p0 = 0.600000;
+
+// Input:5
+	float n_out5p0;
+	n_out5p0 = TIME;
+
+// ScalarOp:15
+	float n_out15p0;
+	n_out15p0 = n_out3p0 + n_out5p0;
+
+// ScalarFunc:12
+	float n_out12p0;
+	n_out12p0 = cos(n_out15p0);
+
+// ScalarOp:16
+	float n_out16p0;
+	n_out16p0 = n_out7p0 * n_out12p0;
+
+// ScalarOp:8
+	float n_out8p0;
+	n_out8p0 = n_out3p0 + n_out16p0;
+
+// ScalarOp:19
+	float n_out19p0;
+	n_out19p0 = n_out3p1 + n_out5p0;
+
+// ScalarFunc:21
+	float n_out21p0;
+	n_out21p0 = cos(n_out19p0);
+
+// ScalarOp:17
+	float n_out17p0;
+	n_out17p0 = n_out21p0 * n_out7p0;
+
+// ScalarOp:9
+	float n_out9p0;
+	n_out9p0 = n_out3p1 + n_out17p0;
+
+// ScalarOp:20
+	float n_out20p0;
+	n_out20p0 = n_out3p2 + n_out5p0;
+
+// ScalarFunc:22
+	float n_out22p0;
+	n_out22p0 = cos(n_out20p0);
+
+// ScalarOp:18
+	float n_out18p0;
+	n_out18p0 = n_out22p0 * n_out7p0;
+
+// ScalarOp:10
+	float n_out10p0;
+	n_out10p0 = n_out3p2 + n_out18p0;
+
+// VectorCompose:11
+	vec3 n_out11p0;
+	n_out11p0 = vec3( n_out8p0 , n_out9p0 , n_out10p0 );
+
+// Output:0
+	VERTEX = n_out11p0;
+
+}
+
+void fragment() {
+// Output:0
+
+}
+
+void light() {
+// Vector:2
+	vec3 n_out2p0;
+	n_out2p0 = vec3(1.000000,0.030000,0.000000);
+
+// Output:0
+	DIFFUSE_LIGHT = n_out2p0;
+
+}
+"
+graph_offset = Vector2( -267.645, 87.8 )
+modes/diffuse = 4
+modes/specular = 3
+flags/ambient_light_disabled = true
+flags/shadows_disabled = true
+nodes/vertex/0/position = Vector2( 740, 140 )
+nodes/vertex/2/node = SubResource( 12 )
+nodes/vertex/2/position = Vector2( -560, -80 )
+nodes/vertex/3/node = SubResource( 16 )
+nodes/vertex/3/position = Vector2( -400, -80 )
+nodes/vertex/5/node = SubResource( 17 )
+nodes/vertex/5/position = Vector2( -360, 60 )
+nodes/vertex/7/node = SubResource( 18 )
+nodes/vertex/7/position = Vector2( -380, 120 )
+nodes/vertex/8/node = SubResource( 19 )
+nodes/vertex/8/position = Vector2( 300, -60 )
+nodes/vertex/9/node = SubResource( 20 )
+nodes/vertex/9/position = Vector2( 300, 60 )
+nodes/vertex/10/node = SubResource( 4 )
+nodes/vertex/10/position = Vector2( 300, 180 )
+nodes/vertex/11/node = SubResource( 5 )
+nodes/vertex/11/position = Vector2( 540, 140 )
+nodes/vertex/12/node = SubResource( 6 )
+nodes/vertex/12/position = Vector2( -20, -20 )
+nodes/vertex/15/node = SubResource( 7 )
+nodes/vertex/15/position = Vector2( -180, -60 )
+nodes/vertex/16/node = SubResource( 8 )
+nodes/vertex/16/position = Vector2( 140, -60 )
+nodes/vertex/17/node = SubResource( 9 )
+nodes/vertex/17/position = Vector2( 140, 60 )
+nodes/vertex/18/node = SubResource( 10 )
+nodes/vertex/18/position = Vector2( 140, 180 )
+nodes/vertex/19/node = SubResource( 11 )
+nodes/vertex/19/position = Vector2( -180, 60 )
+nodes/vertex/20/node = SubResource( 13 )
+nodes/vertex/20/position = Vector2( -180, 180 )
+nodes/vertex/21/node = SubResource( 14 )
+nodes/vertex/21/position = Vector2( -20, 80 )
+nodes/vertex/22/node = SubResource( 15 )
+nodes/vertex/22/position = Vector2( -20, 200 )
+nodes/vertex/connections = PoolIntArray( 2, 0, 3, 0, 3, 0, 8, 0, 3, 1, 9, 0, 3, 2, 10, 0, 8, 0, 11, 0, 9, 0, 11, 1, 10, 0, 11, 2, 11, 0, 0, 0, 3, 0, 15, 0, 5, 0, 15, 1, 7, 0, 17, 1, 7, 0, 18, 1, 3, 1, 19, 0, 3, 2, 20, 0, 5, 0, 19, 1, 5, 0, 20, 1, 16, 0, 8, 1, 7, 0, 16, 0, 12, 0, 16, 1, 15, 0, 12, 0, 19, 0, 21, 0, 21, 0, 17, 0, 20, 0, 22, 0, 22, 0, 18, 0, 18, 0, 10, 1, 17, 0, 9, 1 )
+nodes/fragment/0/position = Vector2( 740, 80 )
+nodes/light/2/node = SubResource( 3 )
+nodes/light/2/position = Vector2( 240, 140 )
+nodes/light/connections = PoolIntArray( 2, 0, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=22]
+shader = SubResource( 21 )
+
+[sub_resource type="CubeMesh" id=23]
+material = SubResource( 22 )
+size = Vector3( 20, 20, 20 )
+
+[sub_resource type="Gradient" id=24]
+offsets = PoolRealArray( 0, 0.311111, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=25]
+gradient = SubResource( 24 )
+
+[sub_resource type="Curve" id=26]
+_data = [ Vector2( 0, 0 ), 0.0, 2.43166, 0, 0, Vector2( 1, 0 ), -5.5488, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=27]
+curve = SubResource( 26 )
+
+[sub_resource type="ParticlesMaterial" id=28]
+emission_shape = 2
+emission_box_extents = Vector3( 10, 10, 10 )
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 1.0
+radial_accel = 1.0
+radial_accel_random = 1.0
+scale = 1.8
+scale_random = 0.5
+scale_curve = SubResource( 27 )
+color_ramp = SubResource( 25 )
+
+[sub_resource type="Shader" id=29]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float specular;
+uniform float metallic;
+uniform float roughness : hint_range(0,1);
+uniform float point_size : hint_range(0,128);
+uniform sampler2D texture_metallic : hint_white;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_white;
+uniform vec4 roughness_texture_channel;
+uniform sampler2D texture_emission : hint_black_albedo;
+uniform vec4 emission : hint_color;
+uniform float emission_energy;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+uniform float vertex_power : hint_range(0.0, 1.0);
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	
+	VERTEX.x += cos(VERTEX.x + TIME) * vertex_power;
+	VERTEX.y += cos(VERTEX.y + TIME) * vertex_power;
+	VERTEX.z += cos(VERTEX.z + TIME) * vertex_power;
+}
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	vec3 emission_tex = texture(texture_emission,base_uv).rgb;
+	EMISSION = (emission.rgb+emission_tex)*emission_energy;
+	ALPHA = albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=30]
+shader = SubResource( 29 )
+shader_param/albedo = Color( 1, 0.772549, 0, 0.486275 )
+shader_param/specular = 0.5
+shader_param/metallic = 0.0
+shader_param/roughness = 1.0
+shader_param/point_size = 1.0
+shader_param/metallic_texture_channel = Plane( 1, 0, 0, 0 )
+shader_param/roughness_texture_channel = Plane( 1, 0, 0, 0 )
+shader_param/emission = Color( 0.129412, 0.105882, 0, 1 )
+shader_param/emission_energy = 0.1
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+shader_param/vertex_power = 0.2
+
+[sub_resource type="CubeMesh" id=31]
+material = SubResource( 30 )
+
+[sub_resource type="SpatialMaterial" id=32]
+albedo_color = Color( 0.101961, 0.0196078, 0.0196078, 1 )
+
+[sub_resource type="CubeMesh" id=33]
+material = SubResource( 32 )
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="Curve" id=34]
+min_value = -0.1
+max_value = 0.1
+_data = [ Vector2( 0, 0.00616001 ), 0.0, 0.183508, 0, 0, Vector2( 0.995715, -0.0132 ), 0.426335, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=35]
+curve = SubResource( 34 )
+
+[sub_resource type="Curve" id=36]
+_data = [ Vector2( 0, 0 ), 0.0, 1.45617, 0, 0, Vector2( 1, 0 ), -5.89142, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=37]
+curve = SubResource( 36 )
+
+[sub_resource type="ParticlesMaterial" id=38]
+emission_shape = 2
+emission_box_extents = Vector3( 0.6, 0.6, 0.6 )
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 1.05
+radial_accel_curve = SubResource( 35 )
+scale_random = 1.0
+scale_curve = SubResource( 37 )
+
+[sub_resource type="SpatialMaterial" id=39]
+albedo_color = Color( 1, 0, 0, 1 )
+emission_enabled = true
+emission = Color( 1, 0.607843, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CubeMesh" id=40]
+material = SubResource( 39 )
+size = Vector3( 0.2, 0.2, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=41]
+albedo_color = Color( 0, 0.537255, 0.0352941, 1 )
+
+[sub_resource type="CubeMesh" id=42]
+material = SubResource( 41 )
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=43]
+flags_transparent = true
+albedo_color = Color( 0, 0.345098, 1, 0.439216 )
+
+[sub_resource type="CubeMesh" id=44]
+material = SubResource( 43 )
+size = Vector3( 0.2, 0.2, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=45]
+albedo_color = Color( 0.603922, 0.603922, 0.603922, 1 )
+
+[sub_resource type="CubeMesh" id=46]
+material = SubResource( 45 )
+size = Vector3( 0.4, 0.4, 0.4 )
+
+[sub_resource type="ParticlesMaterial" id=47]
+render_priority = -10
+emission_shape = 2
+emission_box_extents = Vector3( 500, 500, 500 )
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 1.05
+scale = 4.0
+scale_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=48]
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 16.0
+emission_operator = 0
+emission_on_uv2 = true
+
+[sub_resource type="CubeMesh" id=49]
+material = SubResource( 48 )
+size = Vector3( 0.4, 0.4, 0.4 )
+
+[sub_resource type="Animation" id=50]
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -1920, 0 ) ]
+}
+
+[sub_resource type="Animation" id=51]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1920, 0 ) ]
+}
+
+[sub_resource type="Animation" id=52]
+resource_name = "Play"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayOne:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.0161479, 0.5, 1.6 ),
+"transitions": PoolRealArray( 1, 0.297302, 1 ),
+"update": 0,
+"values": [ Vector2( 4560, 240 ), Vector2( 4560, 240 ), Vector2( 4560, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayOne:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0161479, 0.5, 1.6 ),
+"transitions": PoolRealArray( 0.5, 0.297302, 1 ),
+"update": 0,
+"values": [ Vector2( 1200, 240 ), Vector2( 1200, 300 ), Vector2( 1200, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayToMain:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.0161479, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 4560, 480 ), Vector2( 5760, 540 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayToMain:rect_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.0161479, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1200, 120 ), Vector2( 1200, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("PlayTwo:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.0161479, 0.5, 1.6 ),
+"transitions": PoolRealArray( 0.5, 0.297302, 1 ),
+"update": 0,
+"values": [ Vector2( 4560, 600 ), Vector2( 4560, 540 ), Vector2( 4560, 1080 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("PlayTwo:rect_size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.0161479, 0.5, 1.6 ),
+"transitions": PoolRealArray( 0.5, 0.297302, 1 ),
+"update": 0,
+"values": [ Vector2( 1200, 240 ), Vector2( 1200, 300 ), Vector2( 1200, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Dark:rect_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.5, 1.6, 1.99998 ),
+"transitions": PoolRealArray( 1, 0.297302, 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 4590, 540 ), Vector2( 4590, 540 ), Vector2( 4560, 0 ), Vector2( 3840, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Dark:rect_size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.5, 1.6, 1.99998 ),
+"transitions": PoolRealArray( 1, 0.297302, 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1140, 0 ), Vector2( 1140, 0 ), Vector2( 1200, 1080 ), Vector2( 1920, 1080 ) ]
+}
+
+[sub_resource type="Animation" id=53]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Logo:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.203063, 1 ),
+"update": 0,
+"values": [ Vector2( 1920, 0 ), Vector2( 1920, -240 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Play:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8, 1.4 ),
+"transitions": PoolRealArray( 0.297302, 0.297302, 1 ),
+"update": 0,
+"values": [ Vector2( 2280, 360 ), Vector2( 2280, 360 ), Vector2( 3840, 360 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Options:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 1.4 ),
+"transitions": PoolRealArray( 1, 0.297302, 1 ),
+"update": 0,
+"values": [ Vector2( 2280, 600 ), Vector2( 2280, 600 ), Vector2( 720, 600 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Quit:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.3, 1.8, 3 ),
+"transitions": PoolRealArray( 0.297302, 1.8025, 1, 1, 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 2280, 840 ), Vector2( 1920, 840 ), Vector2( 1920, 960 ), Vector2( 1920, 960 ), Vector2( 1920, 0 ), Vector2( 1920, 1080 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Quit:rect_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5, 3 ),
+"transitions": PoolRealArray( 0.297302, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1200, 120 ), Vector2( 1920, 120 ), Vector2( 1920, 120 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Info:margin_top")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.8025, 1 ),
+"update": 0,
+"values": [ -14.0, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Dark:rect_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.8, 3 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -1080 ), Vector2( 0, -1080 ), Vector2( 0, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Dark:rect_size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 5760, 1080 ) ]
+}
+
+[sub_resource type="Environment" id=54]
+ambient_light_color = Color( 0, 0, 0.0392157, 1 )
+fog_color = Color( 1, 1, 1, 1 )
+fog_sun_color = Color( 1, 1, 1, 1 )
+fog_depth_begin = 100.0
+fog_depth_end = 1000.0
+tonemap_exposure = 0.51
+tonemap_white = 4.46
+auto_exposure_enabled = true
+auto_exposure_scale = 4.0
+dof_blur_far_distance = 8192.0
+dof_blur_far_amount = 0.02
+dof_blur_far_quality = 2
+glow_enabled = true
+glow_levels/5 = false
+glow_intensity = 0.01
+glow_blend_mode = 0
+
+[node name="Main Tab" type="Node"]
+script = ExtResource( 1 )
+
+[node name="3D" type="Spatial" parent="."]
+
+[node name="Camera" type="Spatial" parent="3D"]
+
+[node name="Camera" type="Camera" parent="3D/Camera"]
+transform = Transform( -0.725158, -0.362834, 0.585232, -0.0145397, 0.857788, 0.513798, -0.688429, 0.364076, -0.627307, 50, 50, -50 )
+fov = 80.0
+near = 0.01
+far = 8192.0
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="3D/Camera/Camera"]
+anims/Options = SubResource( 1 )
+anims/Play = SubResource( 2 )
+
+[node name="Solar Sys" type="Spatial" parent="3D"]
+
+[node name="Sun" type="MeshInstance" parent="3D/Solar Sys"]
+mesh = SubResource( 23 )
+material/0 = null
+
+[node name="Particles" type="Particles" parent="3D/Solar Sys/Sun"]
+layers = 2
+amount = 800
+lifetime = 4.0
+preprocess = 30.0
+speed_scale = 0.1
+randomness = 1.0
+visibility_aabb = AABB( -16, -16, -16, 32, 32, 32 )
+process_material = SubResource( 28 )
+draw_pass_1 = SubResource( 31 )
+
+[node name="OmniLight" type="OmniLight" parent="3D/Solar Sys/Sun"]
+layers = 3
+light_energy = 4.0
+shadow_enabled = true
+omni_range = 10000.0
+omni_attenuation = 0.406122
+omni_shadow_mode = 0
+
+[node name="Hot planet" type="Spatial" parent="3D/Solar Sys"]
+script = ExtResource( 3 )
+
+[node name="Planet" type="MeshInstance" parent="3D/Solar Sys/Hot planet"]
+transform = Transform( 1.72546, 0.150958, -1, 0.00132412, 1.97725, 0.300768, 1.01133, -0.260144, 1.70574, 20, 0, 0 )
+mesh = SubResource( 33 )
+material/0 = null
+
+[node name="Particles" type="Particles" parent="3D/Solar Sys/Hot planet/Planet"]
+transform = Transform( 1, 0, 0, -7.45058e-009, 1, -7.45058e-009, 2.98023e-008, 0, 1, 0, 0, 0 )
+amount = 80
+lifetime = 10.0
+process_material = SubResource( 38 )
+draw_pass_1 = SubResource( 40 )
+
+[node name="Warm planet" type="Spatial" parent="3D/Solar Sys"]
+script = ExtResource( 3 )
+
+[node name="Planet" type="MeshInstance" parent="3D/Solar Sys/Warm planet"]
+transform = Transform( 2.20872, -0.253086, -1.34815, 0.391205, 2.56546, 0.159316, 1.31473, -0.338187, 2.21746, 32.6242, 0, 0.250925 )
+mesh = SubResource( 42 )
+material/0 = null
+
+[node name="Particles" type="Particles" parent="3D/Solar Sys/Warm planet/Planet"]
+transform = Transform( 1, 0, 0, -7.45058e-009, 1, -7.45058e-009, 2.98023e-008, 0, 1, 0, 0, 0 )
+amount = 80
+lifetime = 10.0
+process_material = SubResource( 38 )
+draw_pass_1 = SubResource( 44 )
+
+[node name="Moon" type="Spatial" parent="3D/Solar Sys/Warm planet"]
+transform = Transform( 1.4, 2.08616e-008, -2.38418e-007, -1.56462e-008, 1.4, 1.04308e-008, 2.38418e-007, 5.21541e-009, 1.4, 32.8511, 0, 0.501602 )
+script = ExtResource( 3 )
+
+[node name="Planet" type="MeshInstance" parent="3D/Solar Sys/Warm planet/Moon"]
+transform = Transform( 0.517638, 0.0452875, -0.3, 0.000397235, 0.593176, 0.0902304, 0.303399, -0.0780432, 0.511721, 1.35298, -3.75913e-007, -2.0164 )
+mesh = SubResource( 46 )
+material/0 = null
+
+[node name="MoonHoloRing" type="Sprite3D" parent="3D/Solar Sys/Warm planet"]
+transform = Transform( 1.4, 2.23517e-008, -2.98023e-007, 0, 1.4, 2.23517e-008, 3.57628e-007, 7.45058e-009, 1.4, 32.8511, 3.4878e-007, 0.501603 )
+pixel_size = 0.0048
+axis = 1
+texture = ExtResource( 4 )
+
+[node name="WarmHoloRing" type="Sprite3D" parent="3D/Solar Sys"]
+pixel_size = 0.066
+axis = 1
+texture = ExtResource( 5 )
+
+[node name="HotHoloRing" type="Sprite3D" parent="3D/Solar Sys"]
+pixel_size = 0.042
+axis = 1
+texture = ExtResource( 6 )
+
+[node name="Stars" type="Particles" parent="3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 50 )
+amount = 2000
+lifetime = 800.0
+explosiveness = 1.0
+visibility_aabb = AABB( -400, -400, -400, 800, 800, 800 )
+process_material = SubResource( 47 )
+draw_pass_1 = SubResource( 49 )
+
+[node name="2D" type="Node2D" parent="."]
+position = Vector2( 2880, 540 )
+
+[node name="Camera" type="Camera2D" parent="2D"]
+current = true
+script = ExtResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="2D/Camera"]
+anims/Options = SubResource( 50 )
+anims/Play = SubResource( 51 )
+
+[node name="GUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 3840.0
+rect_pivot_offset = Vector2( 2880, 540 )
+script = ExtResource( 8 )
+
+[node name="Logo" type="TextureRect" parent="GUI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -960.0
+margin_right = 960.0
+margin_bottom = 240.0
+texture = ExtResource( 9 )
+expand = true
+
+[node name="Play" parent="GUI" instance=ExtResource( 10 )]
+margin_left = 2280.0
+margin_top = 360.0
+margin_right = -119.999
+margin_bottom = 360.12
+type = [ 1, 1 ]
+text = "Play"
+color = Color( 0.392157, 1, 0.392157, 0.0627451 )
+reloading = false
+click_sound = ExtResource( 11 )
+signal_node = NodePath("")
+signals = {
+"focus": "",
+"hoover": "",
+"pressed": ""
+}
+
+[node name="Options" parent="GUI" instance=ExtResource( 10 )]
+margin_left = 2280.0
+margin_top = 600.0
+margin_right = -120.002
+margin_bottom = 600.12
+type = [ 2, 2 ]
+text = "Options"
+color = Color( 0.392157, 0.392157, 1, 0.0627451 )
+reloading = false
+click_sound = ExtResource( 11 )
+signal_node = NodePath("")
+signals = {
+"focus": "",
+"hoover": "",
+"pressed": ""
+}
+
+[node name="Quit" parent="GUI" instance=ExtResource( 10 )]
+margin_left = 2280.0
+margin_top = 840.0
+margin_right = -120.0
+margin_bottom = 840.12
+type = [ 3, 3 ]
+text = "Quit"
+color = Color( 1, 0, 0, 0.0627451 )
+reloading = false
+click_sound = ExtResource( 12 )
+signal_node = NodePath("")
+signals = {
+"focus": "",
+"hoover": "",
+"pressed": ""
+}
+
+[node name="Info" type="Label" parent="GUI"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+text = "Info:"
+align = 1
+valign = 2
+script = ExtResource( 13 )
+
+[node name="Options 2 Main" parent="GUI" instance=ExtResource( 10 )]
+margin_top = 480.0
+margin_right = -2580.0
+margin_bottom = 480.12
+type = [ 2, 2 ]
+text = "Reutrn To Main Menu"
+color = Color( 0, 1, 1, 0.0313726 )
+reloading = false
+click_sound = ExtResource( 12 )
+signal_node = NodePath("")
+signals = {
+"focus": "",
+"hoover": "",
+"pressed": ""
+}
+
+[node name="PlayOne" parent="GUI" instance=ExtResource( 10 )]
+margin_left = 4560.0
+margin_top = 240.0
+margin_right = 2160.0
+margin_bottom = 360.249
+type = [ 1, 1 ]
+text = "Start a New World"
+color = Color( 0, 1, 0.627451, 0.12549 )
+reloading = false
+click_sound = ExtResource( 14 )
+signal_node = NodePath("")
+signals = {
+"focus": "",
+"hoover": "",
+"pressed": ""
+}
+
+[node name="PlayToMain" parent="GUI" instance=ExtResource( 10 )]
+margin_left = 4562.0
+margin_top = 480.0
+margin_right = 2162.0
+margin_bottom = 480.12
+type = [ 2, 2 ]
+text = "Retun to Main"
+color = Color( 1, 0.941176, 0, 0.0627451 )
+reloading = false
+click_sound = ExtResource( 12 )
+signal_node = NodePath("")
+signals = {
+"focus": "",
+"hoover": "",
+"pressed": ""
+}
+
+[node name="PlayTwo" parent="GUI" instance=ExtResource( 10 )]
+margin_left = 4560.0
+margin_top = 599.871
+margin_right = 2160.0
+margin_bottom = 720.12
+type = [ 3, 3 ]
+text = "[Load a World]"
+color = Color( 1, 0, 0, 0.0627451 )
+reloading = false
+click_sound = ExtResource( 12 )
+signal_node = NodePath("")
+signals = {
+"focus": "",
+"hoover": "",
+"pressed": ""
+}
+
+[node name="Dark" type="ColorRect" parent="GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1080.0
+margin_bottom = -1080.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="SceneFader" type="AnimationPlayer" parent="GUI"]
+anims/Play = SubResource( 52 )
+anims/Quit = SubResource( 53 )
+
+[node name="Mouse" parent="GUI" instance=ExtResource( 15 )]
+slowness = 64.0
+screen_adder = Vector2( 1920, 0 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+bus = "Music"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 54 )
+[connection signal="main_to_options" from="GUI" to="2D/Camera" method="_on_GUI_main_to_options"]
+[connection signal="main_to_options" from="GUI" to="3D/Camera/Camera" method="_on_GUI_main_to_options"]
+[connection signal="main_to_play" from="GUI" to="2D/Camera" method="_on_GUI_main_to_play"]
+[connection signal="main_to_play" from="GUI" to="3D/Camera/Camera" method="_on_GUI_main_to_play"]
+[connection signal="Pressed" from="GUI/Play" to="GUI" method="_on_Play_Pressed"]
+[connection signal="Pressed" from="GUI/Options" to="GUI" method="_on_Options_Pressed"]
+[connection signal="Pressed" from="GUI/Quit" to="GUI" method="_on_Quit_Pressed"]
+[connection signal="Pressed" from="GUI/Options 2 Main" to="GUI" method="_on_Options_2_Main_Pressed"]
+[connection signal="Pressed" from="GUI/PlayOne" to="GUI" method="_on_PlayREALLY_pressed"]
+[connection signal="Pressed" from="GUI/PlayToMain" to="GUI" method="_on_Return_2_Main_pressed"]
+[connection signal="Pressed" from="GUI/PlayTwo" to="GUI" method="_on_Level_Options_pressed"]
+[connection signal="animation_finished" from="GUI/SceneFader" to="GUI" method="_on_SceneFader_animation_finished"]

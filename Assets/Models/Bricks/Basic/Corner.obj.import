@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Corner.obj-454f6d3d188f44eb45e6f1c3a32171e6.mesh"
+
+[deps]
+
+files=[ "res://.import/Corner.obj-454f6d3d188f44eb45e6f1c3a32171e6.mesh" ]
+
+source_file="res://Assets/Models/Bricks/Basic/Corner.obj"
+dest_files=[ "res://.import/Corner.obj-454f6d3d188f44eb45e6f1c3a32171e6.mesh", "res://.import/Corner.obj-454f6d3d188f44eb45e6f1c3a32171e6.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

@@ -1,0 +1,95 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/Instances/Entities/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Textures/Blocks/YellowLines/YellowLines.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/Blocks/YellowLines/YellowLinesWB.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Textures/Blocks/YellowLines/YellowLinesNormalMap.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Textures/Blocks/YellowLines/YellowLinesBW.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Models/Bricks/Basic/basic.meshlib" type="MeshLibrary" id=6]
+[ext_resource path="res://Assets/Main_Env.tres" type="Environment" id=7]
+[ext_resource path="res://Assets/Instances/Blocks/Basic/Full.tscn" type="PackedScene" id=8]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 2 )
+metallic = 1.0
+metallic_texture = ExtResource( 3 )
+metallic_texture_channel = 4
+roughness_texture = ExtResource( 5 )
+roughness_texture_channel = 4
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 4 )
+uv1_scale = Vector3( 100, 100, 1 )
+
+[sub_resource type="PlaneMesh" id=2]
+material = SubResource( 1 )
+size = Vector2( 100, 100 )
+
+[sub_resource type="PhysicsMaterial" id=3]
+friction = 10.0
+bounce = 20.81
+
+[sub_resource type="ConvexPolygonShape" id=4]
+points = PoolVector3Array( 50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, -50 )
+
+[sub_resource type="CubeMesh" id=5]
+
+[node name="DebugPlay" type="Node"]
+
+[node name="3D" type="Spatial" parent="."]
+
+[node name="Player" parent="3D" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+can_fly = true
+
+[node name="Plane" type="MeshInstance" parent="3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Ground" type="StaticBody" parent="3D/Plane"]
+physics_material_override = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="3D/Plane/Ground"]
+shape = SubResource( 4 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="3D"]
+transform = Transform( -1, 4.37114e-008, -7.57103e-008, 0, 0.866025, 0.5, 8.74228e-008, 0.5, -0.866025, 0, 7, 0 )
+shadow_enabled = true
+directional_shadow_split_1 = 0.01
+directional_shadow_split_2 = 0.02
+directional_shadow_split_3 = 0.05
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 8192.0
+
+[node name="Cube" type="MeshInstance" parent="3D"]
+transform = Transform( 0.870002, -0.383022, -0.310468, -0.14473, 0.403559, -0.903434, 0.471328, 0.830924, 0.295662, 5, 4, -7 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="GridMap" type="GridMap" parent="3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+mesh_library = ExtResource( 6 )
+cell_size = Vector3( 0.5, 0.5, 0.5 )
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PoolIntArray( 2, 65503, 1048576, 3, 65503, 1048578, 4, 65503, 1048578, 5, 65503, 1048578, 6, 65503, 1048578, 7, 65503, 0, 2, 65504, 655362, 3, 65504, 1441793, 4, 65504, 1441793, 5, 65504, 1441793, 6, 65504, 1441793, 7, 65504, 2, 2, 65505, 655362, 3, 65505, 1441793, 4, 65505, 1441793, 5, 65505, 1441793, 6, 65505, 1441793, 7, 65505, 2, 2, 65506, 655362, 3, 65506, 1441793, 4, 65506, 1441793, 5, 65506, 1441793, 6, 65506, 1441793, 7, 65506, 2, 2, 65507, 655362, 3, 65507, 1441793, 4, 65507, 1441793, 5, 65507, 1441793, 6, 65507, 1441793, 7, 65507, 2, 2, 65508, 655360, 3, 65508, 1441794, 4, 65508, 1441794, 5, 65508, 1441794, 6, 65508, 1441794, 7, 65508, 1441792 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="3D"]
+environment = ExtResource( 7 )
+
+[node name="BasicBlock" parent="3D" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="2D" type="Node2D" parent="."]
+
+[node name="GUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0

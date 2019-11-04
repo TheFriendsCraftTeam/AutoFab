@@ -1,0 +1,9 @@
+>"Debug Play" [
+prev ""
+run "res://Scenes/DebugPlay/DebugPlay.tscn"
+]
+
+>"Tutorial" [
+prev ""
+run "res://Scenes/Levels/Tutorials/Tutorials.tscn"
+]

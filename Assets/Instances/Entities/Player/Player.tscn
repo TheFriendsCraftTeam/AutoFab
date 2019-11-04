@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Instances/Entities/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Instances/Entities/Player/GUI.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Instances/Entities/Player/Bars/Life.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Instances/Entities/Player/Bars/Stamina.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Instances/Entities/Player/Bars/PauseMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Instances/Entities/Player/Konsole/Konsole.tscn" type="PackedScene" id=6]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.4
+
+[node name="Player" type="KinematicBody" groups=[
+"Player",
+]]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0.9, 0 )
+shape = SubResource( 1 )
+
+[node name="3D" type="Spatial" parent="."]
+
+[node name="Camera" type="Spatial" parent="3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0 )
+
+[node name="Camera" type="Camera" parent="3D/Camera"]
+current = true
+fov = 80.0
+near = 0.01
+far = 1000.0
+
+[node name="RayCast" type="RayCast" parent="3D/Camera/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -8 )
+
+[node name="Listener" type="Listener" parent="3D/Camera/Camera"]
+current = true
+
+[node name="2D" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="2D"]
+anchor_mode = 0
+current = true
+
+[node name="GUI" type="Control" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Life" parent="GUI" instance=ExtResource( 3 )]
+pause_mode = 1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -240.0
+margin_top = -200.0
+margin_right = 240.0
+margin_bottom = -120.0
+
+[node name="Stamina" parent="GUI" instance=ExtResource( 4 )]
+pause_mode = 1
+margin_left = 130.5
+margin_top = -200.0
+margin_right = 610.5
+margin_bottom = -140.0
+
+[node name="PauseMenu" parent="GUI" instance=ExtResource( 5 )]
+
+[node name="Konsole" parent="GUI" instance=ExtResource( 6 )]
+visible = false
+
+[node name="Label" type="Label" parent="GUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -7.0
+margin_right = 20.0
+margin_bottom = 7.0
+text = "ciao"
+align = 1
+[connection signal="command" from="GUI/Konsole" to="GUI" method="_on_Konsole_command"]
+[connection signal="quitting" from="GUI/Konsole" to="GUI" method="_on_Konsole_quitting"]

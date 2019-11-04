@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Models/misc/red_cross.mesh" type="ArrayMesh" id=1]
+
+[sub_resource type="Environment" id=1]
+glow_enabled = true
+glow_levels/5 = false
+glow_intensity = 2.0
+glow_bloom = 0.1
+glow_blend_mode = 0
+
+[node name="Error" type="Node"]
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
+fov = 80.0
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial"]
+transform = Transform( 0.176777, -0.176777, 0, 0.176777, 0.176777, 0, 0, 0, 0.25, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = null
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
