@@ -41,7 +41,9 @@ window/size/resizable=false
 window/size/borderless=true
 window/size/fullscreen=true
 window/per_pixel_transparency/allowed=true
-mouse_cursor/custom_image="res://Assets/Textures/Misc/Mouse.png"
+mouse_cursor/custom_image="res://Assets/Textures/GUI/Mouse/Hexa16x.png"
+mouse_cursor/custom_image_hotspot=Vector2( 8, 8 )
+mouse_cursor/tooltip_position_offset=Vector2( 16, 16 )
 
 [editor]
 

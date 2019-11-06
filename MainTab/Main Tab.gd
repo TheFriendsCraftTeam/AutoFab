@@ -30,3 +30,7 @@ func _ready() -> void:
 	ProjectSettings.set("FriendsCraft/user/Username", user.name)
 	ProjectSettings.set("FriendsCraft/user/Password", user.password)
 
+
+
+func _on_button_Hoover(on) -> void:
+	$GUI/Mouse.hoover(on)

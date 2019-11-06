@@ -54,6 +54,7 @@ func _ready() -> void:
 	level_file.open("res://Scenes/Levels/Levels.list", File.READ)#Opens the level list
 	levels = get_level_by_string(get_file_lines(level_file))
 	
-	
-	
+#	var t = Tween.new()
+#	print(t.interpolate_property($GUI/TextureRect, "rect_position", null, Vector2(0, 0), 4.0, Tween.TRANS_CUBIC, Tween.EASE_IN))
+#	t.start()
 	

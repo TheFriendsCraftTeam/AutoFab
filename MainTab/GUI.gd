@@ -40,3 +40,5 @@ func _on_SceneFader_animation_finished(anim_name: String) -> void:
 	elif anim_name == "Play":
 		print("Changing scene...")
 		get_tree().change_scene("res://Scenes/Levels/LevelSelection.tscn")
+
+

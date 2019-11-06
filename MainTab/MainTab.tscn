@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://MainTab/Main Tab.gd" type="Script" id=1]
 [ext_resource path="res://MainTab/Camera3D.gd" type="Script" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://MainTab/Label.gd" type="Script" id=13]
 [ext_resource path="res://Assets/MusicAndSounds/Effects/GUI/Ok.wav" type="AudioStream" id=14]
 [ext_resource path="res://Assets/Instances/GUI/Mouse.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Assets/MusicAndSounds/MainTheme.ogg" type="AudioStream" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Options"
@@ -815,31 +814,16 @@ margin_bottom = 360.12
 type = [ 1, 1 ]
 text = "Play"
 color = Color( 0.392157, 1, 0.392157, 0.0627451 )
-reloading = false
 click_sound = ExtResource( 11 )
-signal_node = NodePath("")
-signals = {
-"focus": "",
-"hoover": "",
-"pressed": ""
-}
 
 [node name="Options" parent="GUI" instance=ExtResource( 10 )]
 margin_left = 2280.0
 margin_top = 600.0
 margin_right = -120.002
 margin_bottom = 600.12
-type = [ 2, 2 ]
 text = "Options"
 color = Color( 0.392157, 0.392157, 1, 0.0627451 )
-reloading = false
 click_sound = ExtResource( 11 )
-signal_node = NodePath("")
-signals = {
-"focus": "",
-"hoover": "",
-"pressed": ""
-}
 
 [node name="Quit" parent="GUI" instance=ExtResource( 10 )]
 margin_left = 2280.0
@@ -849,14 +833,7 @@ margin_bottom = 840.12
 type = [ 3, 3 ]
 text = "Quit"
 color = Color( 1, 0, 0, 0.0627451 )
-reloading = false
 click_sound = ExtResource( 12 )
-signal_node = NodePath("")
-signals = {
-"focus": "",
-"hoover": "",
-"pressed": ""
-}
 
 [node name="Info" type="Label" parent="GUI"]
 anchor_top = 1.0
@@ -872,17 +849,9 @@ script = ExtResource( 13 )
 margin_top = 480.0
 margin_right = -2580.0
 margin_bottom = 480.12
-type = [ 2, 2 ]
 text = "Reutrn To Main Menu"
 color = Color( 0, 1, 1, 0.0313726 )
-reloading = false
 click_sound = ExtResource( 12 )
-signal_node = NodePath("")
-signals = {
-"focus": "",
-"hoover": "",
-"pressed": ""
-}
 
 [node name="PlayOne" parent="GUI" instance=ExtResource( 10 )]
 margin_left = 4560.0
@@ -892,31 +861,16 @@ margin_bottom = 360.249
 type = [ 1, 1 ]
 text = "Start a New World"
 color = Color( 0, 1, 0.627451, 0.12549 )
-reloading = false
 click_sound = ExtResource( 14 )
-signal_node = NodePath("")
-signals = {
-"focus": "",
-"hoover": "",
-"pressed": ""
-}
 
 [node name="PlayToMain" parent="GUI" instance=ExtResource( 10 )]
 margin_left = 4562.0
 margin_top = 480.0
 margin_right = 2162.0
 margin_bottom = 480.12
-type = [ 2, 2 ]
 text = "Retun to Main"
 color = Color( 1, 0.941176, 0, 0.0627451 )
-reloading = false
 click_sound = ExtResource( 12 )
-signal_node = NodePath("")
-signals = {
-"focus": "",
-"hoover": "",
-"pressed": ""
-}
 
 [node name="PlayTwo" parent="GUI" instance=ExtResource( 10 )]
 margin_left = 4560.0
@@ -926,14 +880,7 @@ margin_bottom = 720.12
 type = [ 3, 3 ]
 text = "[Load a World]"
 color = Color( 1, 0, 0, 0.0627451 )
-reloading = false
 click_sound = ExtResource( 12 )
-signal_node = NodePath("")
-signals = {
-"focus": "",
-"hoover": "",
-"pressed": ""
-}
 
 [node name="Dark" type="ColorRect" parent="GUI"]
 anchor_right = 1.0
@@ -950,21 +897,24 @@ anims/Quit = SubResource( 53 )
 slowness = 64.0
 screen_adder = Vector2( 1920, 0 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 16 )
-bus = "Music"
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 54 )
 [connection signal="main_to_options" from="GUI" to="2D/Camera" method="_on_GUI_main_to_options"]
 [connection signal="main_to_options" from="GUI" to="3D/Camera/Camera" method="_on_GUI_main_to_options"]
 [connection signal="main_to_play" from="GUI" to="2D/Camera" method="_on_GUI_main_to_play"]
 [connection signal="main_to_play" from="GUI" to="3D/Camera/Camera" method="_on_GUI_main_to_play"]
+[connection signal="Hoover" from="GUI/Play" to="." method="_on_button_Hoover"]
 [connection signal="Pressed" from="GUI/Play" to="GUI" method="_on_Play_Pressed"]
+[connection signal="Hoover" from="GUI/Options" to="." method="_on_button_Hoover"]
 [connection signal="Pressed" from="GUI/Options" to="GUI" method="_on_Options_Pressed"]
+[connection signal="Hoover" from="GUI/Quit" to="." method="_on_button_Hoover"]
 [connection signal="Pressed" from="GUI/Quit" to="GUI" method="_on_Quit_Pressed"]
+[connection signal="Hoover" from="GUI/Options 2 Main" to="." method="_on_button_Hoover"]
 [connection signal="Pressed" from="GUI/Options 2 Main" to="GUI" method="_on_Options_2_Main_Pressed"]
+[connection signal="Hoover" from="GUI/PlayOne" to="." method="_on_button_Hoover"]
 [connection signal="Pressed" from="GUI/PlayOne" to="GUI" method="_on_PlayREALLY_pressed"]
+[connection signal="Hoover" from="GUI/PlayToMain" to="." method="_on_button_Hoover"]
 [connection signal="Pressed" from="GUI/PlayToMain" to="GUI" method="_on_Return_2_Main_pressed"]
+[connection signal="Hoover" from="GUI/PlayTwo" to="." method="_on_button_Hoover"]
 [connection signal="Pressed" from="GUI/PlayTwo" to="GUI" method="_on_Level_Options_pressed"]
 [connection signal="animation_finished" from="GUI/SceneFader" to="GUI" method="_on_SceneFader_animation_finished"]

@@ -2,19 +2,14 @@ tool
 extends Control
 
 signal Pressed()
+signal Hoover(on)
+signal Focus(on)
 
 export var type:Array = [2, 2]
 export var text:String = "Button"
 export var color: Color = Color()
 export var reloading:bool = false
 export var click_sound: AudioStream
-
-export var signal_node: NodePath = NodePath()
-export var signals: Dictionary = {
-	"pressed": "",
-	"hoover": "",
-	"focus": ""
-}
 
 var left_texture:Texture
 var right_texture:Texture
@@ -26,7 +21,7 @@ func _process(delta):
 	Reload(reloading)
 
 
-func Reload(textures):
+func Reload(hard):
 	$Label.text = text
 	if !$AudioStreamPlayer.stream == click_sound:
 		$AudioStreamPlayer.stream = click_sound
@@ -35,7 +30,7 @@ func Reload(textures):
 	$BlurRight.material.set_shader_param("modulate", color)
 	$BlurCenter.material.set_shader_param("modulate", color)
 	
-	if textures:
+	if hard:
 		if type[0] == 1:
 			left_texture = load("res://Assets/Textures/GUI/Buttons/BlurMaskButton/Left/EdgeUp.svg")
 		elif type[0] == 2:
@@ -51,17 +46,20 @@ func Reload(textures):
 			right_texture = load("res://Assets/Textures/GUI/Buttons/BlurMaskButton/Right/EdgeDown.svg")
 		reloading = false
 		
-		
 		$BlurLeft.material.set_shader_param("mask", left_texture)
 		$BlurRight.material.set_shader_param("mask", right_texture)
+		
+		
 
 
 func _on_Button_mouse_entered():
 	$AnimationPlayer.play("HooverIn")
+	emit_signal("Hoover", true)
 
 
 func _on_Button_mouse_exited():
 	$AnimationPlayer.play("HooverOut")
+	emit_signal("Hoover", false)
 
 
 func _on_Button_pressed():

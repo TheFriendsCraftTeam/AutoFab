@@ -15,6 +15,9 @@ func _process(delta: float) -> void:
 
 func hoover(on: bool = true):
 	if on:
-		$Tween.interpolate_property($TextureRect, "rect_scale", null, Vector2(2, 2), 1.0, Tween.TRANS_CUBIC, Tween.EASE_IN)
+		$TextureRect.texture = preload("res://Assets/Textures/GUI/Mouse/Hexa16x_hole.svg")
+		$Tween.interpolate_property($TextureRect, "rect_scale", null, Vector2(2, 2), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	else:
-		$Tween.interpolate_property($TextureRect, "rect_scale", null, Vector2(1, 1), 1.0, Tween.TRANS_CUBIC, Tween.EASE_IN)
+		$TextureRect.texture = preload("res://Assets/Textures/GUI/Mouse/Hexa16x.svg")
+		$Tween.interpolate_property($TextureRect, "rect_scale", null, Vector2(1, 1), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN)
+	$Tween.start()
