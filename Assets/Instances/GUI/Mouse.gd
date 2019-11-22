@@ -1,23 +1,33 @@
-extends Control
+extends Node2D
 
-var mouse_pos: Vector2 = Vector2()
-export var slowness: float = 16.0
-export var rotation_speed: float = 90.0
-export var screen_adder: Vector2 = Vector2()
+class_name HexaMouse, "res://Assets/Textures/GUI/Mouse/Hexa16x.svg"
+
+export var moving_slowness: float = 4.0
+export var animation_speed: float = 20.0
+export var verticies: int = 6
+export var poly_range: float = 10.0
+export var color: Color
+var time: float
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	position = OS.get_screen_size() / 2
+	z_index = 64
+
+func _draw() -> void:
+	var points: PoolVector2Array
+	var colors: PoolColorArray
+	
+	for vert in range(verticies * 2):
+		points.append(Vector2(sin(deg2rad((360 / verticies * vert) + time)) * (poly_range / 2), cos(deg2rad((360 / verticies * vert) + time)) * (poly_range / 2)))
+		colors.append(color)
+	
+	draw_polyline(points, color, poly_range, true)
 
 func _process(delta: float) -> void:
-	mouse_pos = get_viewport().get_mouse_position()
-	rect_position = ((mouse_pos - (rect_size / 2)) - rect_position / slowness) + screen_adder
-	$TextureRect.rect_rotation += rotation_speed * delta
+	time += delta * animation_speed
+	update()
+	
+	var mouse_coords: Vector2 = get_tree().get_root().get_mouse_position()
+	position += (mouse_coords - position) / moving_slowness
 
-func hoover(on: bool = true):
-	if on:
-		$TextureRect.texture = preload("res://Assets/Textures/GUI/Mouse/Hexa16x_hole.svg")
-		$Tween.interpolate_property($TextureRect, "rect_scale", null, Vector2(2, 2), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN)
-	else:
-		$TextureRect.texture = preload("res://Assets/Textures/GUI/Mouse/Hexa16x.svg")
-		$Tween.interpolate_property($TextureRect, "rect_scale", null, Vector2(1, 1), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN)
-	$Tween.start()

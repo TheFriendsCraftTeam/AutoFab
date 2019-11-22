@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/Instances/Entities/Player/Konsole/Konsole.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
+margin = 0.001
 radius = 0.4
 
 [node name="Player" type="KinematicBody" groups=[
@@ -36,6 +37,10 @@ cast_to = Vector3( 0, 0, -8 )
 
 [node name="Listener" type="Listener" parent="3D/Camera/Camera"]
 current = true
+
+[node name="FloorCheck" type="RayCast" parent="3D"]
+enabled = true
+cast_to = Vector3( 0, -0.1, 0 )
 
 [node name="2D" type="Node2D" parent="."]
 
@@ -73,14 +78,8 @@ margin_bottom = -140.0
 visible = false
 
 [node name="Label" type="Label" parent="GUI"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -7.0
-margin_right = 20.0
-margin_bottom = 7.0
+anchor_right = 1.0
+margin_bottom = 14.0
 text = "ciao"
 align = 1
 [connection signal="command" from="GUI/Konsole" to="GUI" method="_on_Konsole_command"]

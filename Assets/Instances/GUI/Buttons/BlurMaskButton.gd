@@ -53,13 +53,17 @@ func Reload(hard):
 
 
 func _on_Button_mouse_entered():
+	var mouse = get_node("/root/Mouse")
+	#mouse.hoover(true)
 	$AnimationPlayer.play("HooverIn")
-	emit_signal("Hoover", true)
+	#emit_signal("Hoover", true)
 
 
 func _on_Button_mouse_exited():
+	var mouse = get_node("/root/Mouse")
+	#mouse.hoover(false)
 	$AnimationPlayer.play("HooverOut")
-	emit_signal("Hoover", false)
+	#emit_signal("Hoover", false)
 
 
 func _on_Button_pressed():

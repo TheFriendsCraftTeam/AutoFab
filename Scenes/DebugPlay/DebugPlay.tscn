@@ -40,7 +40,10 @@ points = PoolVector3Array( 50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, -50 )
 
 [node name="Player" parent="3D" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-can_fly = true
+time = 0.5
+gravity = -30.0
+gravity_accel = 0.04
+max_falling_speed = -40.0
 
 [node name="Plane" type="MeshInstance" parent="3D"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0 )

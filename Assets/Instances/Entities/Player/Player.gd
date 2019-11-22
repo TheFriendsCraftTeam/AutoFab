@@ -1,7 +1,8 @@
 extends KinematicBody
 
 #Cheats
-export var can_fly = false
+export var can_fly: bool = false
+export var time: float = 1.0
 const SURVIVAL = 0
 const CREATIVE = 1
 const HARDCORE = 2
@@ -37,9 +38,11 @@ const RUNNING = 2
 const SPRINTING = 3
 const SNEAKING = 4
 
-export var gravity:float = -32.0
-export var gravity_accel:float = 0.2
-export var max_falling_speed:float = -64.0
+export var gravity:float = -30.0
+export var gravity_accel:float = 0.04
+export var max_falling_speed:float = -40.0
+
+var grav = gravity
 
 export var walk_speed:float = 4.0
 export var run_speed:float = 6.0
@@ -50,8 +53,10 @@ export var deaccel_power:float = 3.0
 
 export var jump_power:float = 16.0
 
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Engine.set_time_scale(time)
 
 func _process(delta):
 	if can_fly:
@@ -63,7 +68,7 @@ func _process(delta):
 	
 	Interactor = $"3D/Camera/Camera/RayCast".get_collider()
 	if !Interactor == null:
-		$GUI/Label.text = Interactor.name
+		#$GUI/Label.text = Interactor.name
 		if Interactor.is_in_group("Face"):
 			Interactor.selected = true
 			Interactor.Update()
@@ -74,10 +79,7 @@ func _process(delta):
 			ExInteractor.Update()
 		
 	ExInteractor = Interactor
-		
-	
-	
-	
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		change.x = event.relative.x * mouse_sens
@@ -98,9 +100,15 @@ func _input(event):
 		if !Interactor == null:
 			if Interactor.is_in_group("Face"):
 				Interactor.Place("Basic/Full")
-	
 
 func walk(delta):
+	
+	var floor_dist: Vector3 = to_local($"3D/FloorCheck".get_collision_point())
+	var on_floor: bool = false
+	if floor_dist.y < 0 and floor_dist.y > -0.5:
+		on_floor = true
+		#translate(Vector3(0, floor_dist.y + 0.002, 0))#Force the player on ground
+	
 	
 	var aim = $"3D/Camera/Camera".get_camera_transform().basis
 	
@@ -151,15 +159,17 @@ func walk(delta):
 		real_speed = walk_speed
 		StaminaBar.running = false
 	
+	$GUI/Label.text = String(String(on_floor) + " - " + String(floor_dist))
 	
 	dir = dir.normalized()
 	
-	if !is_on_floor():
-		vel.y += gravity * delta
+	if !on_floor:
 		gravity -= gravity_accel * delta
 		gravity = min(gravity, max_falling_speed)
+		vel.y += gravity * delta
 	else:
-		gravity = -2.0
+		gravity = grav
+		vel.y += gravity * delta
 	
 	var tmp_vel = vel
 	tmp_vel.y = 0
@@ -178,7 +188,7 @@ func walk(delta):
 	vel.z = tmp_vel.z
 	vel = move_and_slide(vel, Vector3(0, 1, 0))
 	
-	if Jump and is_on_floor():
+	if Jump and on_floor:
 		$GUI/Stamina.stamina -= 4.0
 		vel.y = jump_power
 	
