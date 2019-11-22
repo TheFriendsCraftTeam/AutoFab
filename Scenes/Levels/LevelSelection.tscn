@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Levels/LevelSelection.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Levels/LevelSel/GUI.gd" type="Script" id=2]
@@ -6,18 +6,14 @@
 [ext_resource path="res://Assets/Textures/Misc/vignette.svg" type="Texture" id=4]
 [ext_resource path="res://Assets/Textures/GUI/Passive_Buttons/LeftArrow.svg" type="Texture" id=5]
 [ext_resource path="res://Assets/Textures/GUI/Passive_Buttons/RightArrow.svg" type="Texture" id=6]
-[ext_resource path="res://Scenes/Levels/LevelSel/Error.tscn" type="PackedScene" id=7]
 
-[sub_resource type="ViewportTexture" id=6]
-viewport_path = NodePath("Viewport")
-
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
 shader_param/lightness = 2.0
 shader_param/blury = 2.0
 shader_param/vignette = ExtResource( 4 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("LeftArrow:rect_position")
@@ -32,7 +28,7 @@ tracks/0/keys = {
 "values": [ Vector2( 120, 360 ), Vector2( 0, 360 ), Vector2( 120, 360 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("RightArrow:rect_position")
@@ -64,16 +60,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
-[node name="TextureRect" type="TextureRect" parent="GUI"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -960.0
-margin_right = 960.0
-texture = SubResource( 6 )
-expand = true
-
 [node name="Vignette" type="ColorRect" parent="GUI"]
-material = SubResource( 3 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -98,14 +86,7 @@ margin_bottom = 180.0
 texture = ExtResource( 6 )
 
 [node name="AnimationPlayerLeft" type="AnimationPlayer" parent="GUI"]
-anims/LeftSel = SubResource( 4 )
+anims/LeftSel = SubResource( 2 )
 
 [node name="AnimationPlayerRight" type="AnimationPlayer" parent="GUI"]
-anims/RightSel = SubResource( 5 )
-
-[node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 3840, 1080 )
-own_world = true
-msaa = 2
-
-[node name="Error" parent="Viewport" instance=ExtResource( 7 )]
+anims/RightSel = SubResource( 3 )
