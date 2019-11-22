@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "HexaMouse",
+"language": "GDScript",
+"path": "res://Assets/Instances/GUI/Mouse.gd"
+} ]
 _global_script_class_icons={
-
+"HexaMouse": "res://Assets/Textures/GUI/Mouse/Hexa16x.svg"
 }
 
 [FriendsCraft]
@@ -28,6 +33,10 @@ run/main_scene="res://MainTab/MainTab.tscn"
 boot_splash/image="res://Assets/Textures/Misc/Splash.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
+
+[autoload]
+
+Mouse="*res://Assets/Instances/GUI/Mouse.tscn"
 
 [debug]
 
@@ -190,6 +199,7 @@ sneak={
 
 [rendering]
 
+quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
 threads/thread_model=2
 quality/shadow_atlas/quadrant_0_subdiv=3
 quality/shadow_atlas/quadrant_1_subdiv=4
@@ -197,5 +207,5 @@ quality/shadow_atlas/quadrant_2_subdiv=5
 quality/shadow_atlas/quadrant_3_subdiv=6
 quality/filters/use_nearest_mipmap_filter=true
 environment/default_clear_color=Color( 0, 0, 0, 1 )
-quality/filters/msaa=4
+quality/filters/msaa=3
 environment/default_environment="res://default_env.tres"
