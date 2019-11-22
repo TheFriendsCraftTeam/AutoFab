@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://MainTab/Main Tab.gd" type="Script" id=1]
 [ext_resource path="res://MainTab/Camera3D.gd" type="Script" id=2]
@@ -6,15 +6,13 @@
 [ext_resource path="res://Assets/Textures/Misc/disk3.svg" type="Texture" id=4]
 [ext_resource path="res://Assets/Textures/Misc/disk2.svg" type="Texture" id=5]
 [ext_resource path="res://Assets/Textures/Misc/disk1.svg" type="Texture" id=6]
-[ext_resource path="res://MainTab/Camera.gd" type="Script" id=7]
-[ext_resource path="res://MainTab/GUI.gd" type="Script" id=8]
-[ext_resource path="res://Assets/Textures/Misc/Logo.svg" type="Texture" id=9]
+[ext_resource path="res://MainTab/GUI.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Textures/Misc/Logo.svg" type="Texture" id=8]
+[ext_resource path="res://MainTab/Label.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Instances/GUI/Buttons/BlurMaskButton.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/MusicAndSounds/Effects/GUI/Click.wav" type="AudioStream" id=11]
 [ext_resource path="res://Assets/MusicAndSounds/Effects/GUI/Back.wav" type="AudioStream" id=12]
-[ext_resource path="res://MainTab/Label.gd" type="Script" id=13]
-[ext_resource path="res://Assets/MusicAndSounds/Effects/GUI/Ok.wav" type="AudioStream" id=14]
-[ext_resource path="res://Assets/Instances/GUI/Mouse.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/MusicAndSounds/Effects/GUI/Ok.wav" type="AudioStream" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Options"
@@ -425,41 +423,10 @@ material = SubResource( 48 )
 size = Vector3( 0.4, 0.4, 0.4 )
 
 [sub_resource type="Animation" id=50]
-length = 0.5
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.5, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -1920, 0 ) ]
-}
-
-[sub_resource type="Animation" id=51]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.5, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 1920, 0 ) ]
-}
-
-[sub_resource type="Animation" id=52]
 resource_name = "Play"
 length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("PlayOne:rect_position")
+tracks/0/path = NodePath("Play/PlayOne:rect_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -471,7 +438,7 @@ tracks/0/keys = {
 "values": [ Vector2( 4560, 240 ), Vector2( 4560, 240 ), Vector2( 4560, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("PlayOne:rect_size")
+tracks/1/path = NodePath("Play/PlayOne:rect_size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -483,7 +450,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1200, 240 ), Vector2( 1200, 300 ), Vector2( 1200, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("PlayToMain:rect_position")
+tracks/2/path = NodePath("Play/PlayToMain:rect_position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -495,7 +462,7 @@ tracks/2/keys = {
 "values": [ Vector2( 4560, 480 ), Vector2( 5760, 540 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("PlayToMain:rect_size")
+tracks/3/path = NodePath("Play/PlayToMain:rect_size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -507,7 +474,7 @@ tracks/3/keys = {
 "values": [ Vector2( 1200, 120 ), Vector2( 1200, 0 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("PlayTwo:rect_position")
+tracks/4/path = NodePath("Play/PlayTwo:rect_position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -519,7 +486,7 @@ tracks/4/keys = {
 "values": [ Vector2( 4560, 600 ), Vector2( 4560, 540 ), Vector2( 4560, 1080 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("PlayTwo:rect_size")
+tracks/5/path = NodePath("Play/PlayTwo:rect_size")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -555,7 +522,7 @@ tracks/7/keys = {
 "values": [ Vector2( 1140, 0 ), Vector2( 1140, 0 ), Vector2( 1200, 1080 ), Vector2( 1920, 1080 ) ]
 }
 
-[sub_resource type="Animation" id=53]
+[sub_resource type="Animation" id=51]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Logo:rect_position")
@@ -570,7 +537,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1920, 0 ), Vector2( 1920, -240 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Play:rect_position")
+tracks/1/path = NodePath("Menu/Play:rect_position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -582,7 +549,7 @@ tracks/1/keys = {
 "values": [ Vector2( 2280, 360 ), Vector2( 2280, 360 ), Vector2( 3840, 360 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Options:rect_position")
+tracks/2/path = NodePath("Menu/Options:rect_position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -594,7 +561,7 @@ tracks/2/keys = {
 "values": [ Vector2( 2280, 600 ), Vector2( 2280, 600 ), Vector2( 720, 600 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Quit:rect_position")
+tracks/3/path = NodePath("Menu/Quit:rect_position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -606,7 +573,7 @@ tracks/3/keys = {
 "values": [ Vector2( 2280, 840 ), Vector2( 1920, 840 ), Vector2( 1920, 960 ), Vector2( 1920, 960 ), Vector2( 1920, 0 ), Vector2( 1920, 1080 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Quit:rect_size")
+tracks/4/path = NodePath("Menu/Quit:rect_size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -652,6 +619,110 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 5760, 1080 ) ]
+}
+
+[sub_resource type="Animation" id=52]
+resource_name = "Options"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2.79397e-007, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1920, 0 ), Vector2( 3840, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.79397e-007, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1920, 1080 ), Vector2( 960, 1080 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Options:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.79397e-007, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 960, 0 ), Vector2( 1920, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Options:rect_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 2.79397e-007, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 960, 1080 ), Vector2( 1920, 1080 ) ]
+}
+
+[sub_resource type="Animation" id=53]
+resource_name = "Play"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1920, 0 ), Vector2( 960, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1920, 1080 ), Vector2( 960, 1080 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Play:rect_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 960, 1080 ), Vector2( 1920, 1080 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Play:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 3840, 0 ), Vector2( 1920, 0 ) ]
 }
 
 [sub_resource type="Environment" id=54]
@@ -756,16 +827,19 @@ material/0 = null
 
 [node name="MoonHoloRing" type="Sprite3D" parent="3D/Solar Sys/Warm planet"]
 transform = Transform( 1.4, 2.23517e-008, -2.98023e-007, 0, 1.4, 2.23517e-008, 3.57628e-007, 7.45058e-009, 1.4, 32.8511, 3.4878e-007, 0.501603 )
+opacity = 0.01
 pixel_size = 0.0048
 axis = 1
 texture = ExtResource( 4 )
 
 [node name="WarmHoloRing" type="Sprite3D" parent="3D/Solar Sys"]
+opacity = 0.02
 pixel_size = 0.066
 axis = 1
 texture = ExtResource( 5 )
 
 [node name="HotHoloRing" type="Sprite3D" parent="3D/Solar Sys"]
+opacity = 0.04
 pixel_size = 0.042
 axis = 1
 texture = ExtResource( 6 )
@@ -782,20 +856,13 @@ draw_pass_1 = SubResource( 49 )
 [node name="2D" type="Node2D" parent="."]
 position = Vector2( 2880, 540 )
 
-[node name="Camera" type="Camera2D" parent="2D"]
-current = true
-script = ExtResource( 7 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="2D/Camera"]
-anims/Options = SubResource( 50 )
-anims/Play = SubResource( 51 )
-
 [node name="GUI" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 3840.0
+margin_left = -1920.0
+margin_right = 1920.0
 rect_pivot_offset = Vector2( 2880, 540 )
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 
 [node name="Logo" type="TextureRect" parent="GUI"]
 anchor_left = 0.5
@@ -803,37 +870,8 @@ anchor_right = 0.5
 margin_left = -960.0
 margin_right = 960.0
 margin_bottom = 240.0
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 expand = true
-
-[node name="Play" parent="GUI" instance=ExtResource( 10 )]
-margin_left = 2280.0
-margin_top = 360.0
-margin_right = -119.999
-margin_bottom = 360.12
-type = [ 1, 1 ]
-text = "Play"
-color = Color( 0.392157, 1, 0.392157, 0.0627451 )
-click_sound = ExtResource( 11 )
-
-[node name="Options" parent="GUI" instance=ExtResource( 10 )]
-margin_left = 2280.0
-margin_top = 600.0
-margin_right = -120.002
-margin_bottom = 600.12
-text = "Options"
-color = Color( 0.392157, 0.392157, 1, 0.0627451 )
-click_sound = ExtResource( 11 )
-
-[node name="Quit" parent="GUI" instance=ExtResource( 10 )]
-margin_left = 2280.0
-margin_top = 840.0
-margin_right = -120.0
-margin_bottom = 840.12
-type = [ 3, 3 ]
-text = "Quit"
-color = Color( 1, 0, 0, 0.0627451 )
-click_sound = ExtResource( 12 )
 
 [node name="Info" type="Label" parent="GUI"]
 anchor_top = 1.0
@@ -843,44 +881,7 @@ margin_top = -14.0
 text = "Info:"
 align = 1
 valign = 2
-script = ExtResource( 13 )
-
-[node name="Options 2 Main" parent="GUI" instance=ExtResource( 10 )]
-margin_top = 480.0
-margin_right = -2580.0
-margin_bottom = 480.12
-text = "Reutrn To Main Menu"
-color = Color( 0, 1, 1, 0.0313726 )
-click_sound = ExtResource( 12 )
-
-[node name="PlayOne" parent="GUI" instance=ExtResource( 10 )]
-margin_left = 4560.0
-margin_top = 240.0
-margin_right = 2160.0
-margin_bottom = 360.249
-type = [ 1, 1 ]
-text = "Start a New World"
-color = Color( 0, 1, 0.627451, 0.12549 )
-click_sound = ExtResource( 14 )
-
-[node name="PlayToMain" parent="GUI" instance=ExtResource( 10 )]
-margin_left = 4562.0
-margin_top = 480.0
-margin_right = 2162.0
-margin_bottom = 480.12
-text = "Retun to Main"
-color = Color( 1, 0.941176, 0, 0.0627451 )
-click_sound = ExtResource( 12 )
-
-[node name="PlayTwo" parent="GUI" instance=ExtResource( 10 )]
-margin_left = 4560.0
-margin_top = 599.871
-margin_right = 2160.0
-margin_bottom = 720.12
-type = [ 3, 3 ]
-text = "[Load a World]"
-color = Color( 1, 0, 0, 0.0627451 )
-click_sound = ExtResource( 12 )
+script = ExtResource( 9 )
 
 [node name="Dark" type="ColorRect" parent="GUI"]
 anchor_right = 1.0
@@ -890,31 +891,126 @@ margin_bottom = -1080.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="SceneFader" type="AnimationPlayer" parent="GUI"]
-anims/Play = SubResource( 52 )
-anims/Quit = SubResource( 53 )
+anims/Play = SubResource( 50 )
+anims/Quit = SubResource( 51 )
 
-[node name="Mouse" parent="GUI" instance=ExtResource( 15 )]
-slowness = 64.0
-screen_adder = Vector2( 1920, 0 )
+[node name="TabFader" type="AnimationPlayer" parent="GUI"]
+anims/Options = SubResource( 52 )
+anims/Play = SubResource( 53 )
+
+[node name="Menu" type="Control" parent="GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1920.0
+margin_right = -1920.0
+
+[node name="Play" parent="GUI/Menu" instance=ExtResource( 10 )]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 360.0
+margin_top = -180.0
+margin_right = -360.0
+margin_bottom = -60.0
+type = [ 1, 1 ]
+text = "Play"
+color = Color( 0.392157, 1, 0.392157, 0.0627451 )
+click_sound = ExtResource( 11 )
+
+[node name="Options" parent="GUI/Menu" instance=ExtResource( 10 )]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 360.0
+margin_top = 60.0
+margin_right = -360.0
+margin_bottom = 180.0
+text = "Options"
+color = Color( 0.392157, 0.392157, 1, 0.0627451 )
+click_sound = ExtResource( 11 )
+
+[node name="Quit" parent="GUI/Menu" instance=ExtResource( 10 )]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 360.0
+margin_top = 300.0
+margin_right = -360.0
+margin_bottom = 420.0
+type = [ 3, 3 ]
+text = "Quit"
+color = Color( 1, 0, 0, 0.0627451 )
+click_sound = ExtResource( 12 )
+
+[node name="Play" type="Control" parent="GUI"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3840.0
+margin_right = -960.0
+
+[node name="PlayOne" parent="GUI/Play" instance=ExtResource( 10 )]
+margin_left = 720.0
+margin_top = 240.0
+margin_right = 720.0
+margin_bottom = 360.12
+type = [ 1, 1 ]
+text = "Start a New World"
+color = Color( 0, 1, 0.627451, 0.12549 )
+click_sound = ExtResource( 13 )
+
+[node name="PlayToMain" parent="GUI/Play" instance=ExtResource( 10 )]
+margin_left = 722.0
+margin_top = 480.0
+margin_right = 720.0
+margin_bottom = 480.12
+text = "Retun to Main"
+color = Color( 1, 0.941176, 0, 0.0627451 )
+click_sound = ExtResource( 12 )
+
+[node name="PlayTwo" parent="GUI/Play" instance=ExtResource( 10 )]
+margin_left = 720.0
+margin_top = 600.0
+margin_right = 720.0
+margin_bottom = 720.12
+type = [ 3, 3 ]
+text = "[Load a World]"
+color = Color( 1, 0, 0, 0.0627451 )
+click_sound = ExtResource( 12 )
+
+[node name="Options" type="Control" parent="GUI"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 960.0
+margin_right = -3840.0
+
+[node name="Options 2 Main" parent="GUI/Options" instance=ExtResource( 10 )]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -120.0
+margin_bottom = 120.0
+text = "Reutrn To Main Menu"
+color = Color( 0, 1, 1, 0.0313726 )
+click_sound = ExtResource( 12 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 54 )
-[connection signal="main_to_options" from="GUI" to="2D/Camera" method="_on_GUI_main_to_options"]
 [connection signal="main_to_options" from="GUI" to="3D/Camera/Camera" method="_on_GUI_main_to_options"]
-[connection signal="main_to_play" from="GUI" to="2D/Camera" method="_on_GUI_main_to_play"]
 [connection signal="main_to_play" from="GUI" to="3D/Camera/Camera" method="_on_GUI_main_to_play"]
-[connection signal="Hoover" from="GUI/Play" to="." method="_on_button_Hoover"]
-[connection signal="Pressed" from="GUI/Play" to="GUI" method="_on_Play_Pressed"]
-[connection signal="Hoover" from="GUI/Options" to="." method="_on_button_Hoover"]
-[connection signal="Pressed" from="GUI/Options" to="GUI" method="_on_Options_Pressed"]
-[connection signal="Hoover" from="GUI/Quit" to="." method="_on_button_Hoover"]
-[connection signal="Pressed" from="GUI/Quit" to="GUI" method="_on_Quit_Pressed"]
-[connection signal="Hoover" from="GUI/Options 2 Main" to="." method="_on_button_Hoover"]
-[connection signal="Pressed" from="GUI/Options 2 Main" to="GUI" method="_on_Options_2_Main_Pressed"]
-[connection signal="Hoover" from="GUI/PlayOne" to="." method="_on_button_Hoover"]
-[connection signal="Pressed" from="GUI/PlayOne" to="GUI" method="_on_PlayREALLY_pressed"]
-[connection signal="Hoover" from="GUI/PlayToMain" to="." method="_on_button_Hoover"]
-[connection signal="Pressed" from="GUI/PlayToMain" to="GUI" method="_on_Return_2_Main_pressed"]
-[connection signal="Hoover" from="GUI/PlayTwo" to="." method="_on_button_Hoover"]
-[connection signal="Pressed" from="GUI/PlayTwo" to="GUI" method="_on_Level_Options_pressed"]
 [connection signal="animation_finished" from="GUI/SceneFader" to="GUI" method="_on_SceneFader_animation_finished"]
+[connection signal="Hoover" from="GUI/Menu/Play" to="." method="_on_button_Hoover"]
+[connection signal="Pressed" from="GUI/Menu/Play" to="GUI" method="_on_Play_Pressed"]
+[connection signal="Hoover" from="GUI/Menu/Options" to="." method="_on_button_Hoover"]
+[connection signal="Pressed" from="GUI/Menu/Options" to="GUI" method="_on_Options_Pressed"]
+[connection signal="Hoover" from="GUI/Menu/Quit" to="." method="_on_button_Hoover"]
+[connection signal="Pressed" from="GUI/Menu/Quit" to="GUI" method="_on_Quit_Pressed"]
+[connection signal="Hoover" from="GUI/Play/PlayOne" to="." method="_on_button_Hoover"]
+[connection signal="Pressed" from="GUI/Play/PlayOne" to="GUI" method="_on_PlayREALLY_pressed"]
+[connection signal="Hoover" from="GUI/Play/PlayToMain" to="." method="_on_button_Hoover"]
+[connection signal="Pressed" from="GUI/Play/PlayToMain" to="GUI" method="_on_Return_2_Main_pressed"]
+[connection signal="Hoover" from="GUI/Play/PlayTwo" to="." method="_on_button_Hoover"]
+[connection signal="Pressed" from="GUI/Play/PlayTwo" to="GUI" method="_on_Level_Options_pressed"]
+[connection signal="Hoover" from="GUI/Options/Options 2 Main" to="." method="_on_button_Hoover"]
+[connection signal="Pressed" from="GUI/Options/Options 2 Main" to="GUI" method="_on_Options_2_Main_Pressed"]

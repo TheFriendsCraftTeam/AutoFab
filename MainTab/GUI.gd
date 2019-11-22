@@ -4,13 +4,15 @@ signal main_to_play()#Some custom signals
 signal main_to_options()
 
 func _process(delta: float) -> void:
-	$Mouse.screen_adder = get_node("../2D/Camera").offset + Vector2(1920, 0)
+	get_node("/root/Mouse")#.screen_adder = get_node("../2D/Camera").offset + Vector2(1920, 0)
 
 func _on_Play_Pressed():
 	emit_signal("main_to_play")
+	$TabFader.play("Play")
 	$Info.align = Label.ALIGN_RIGHT
 
 func _on_Options_Pressed():
+	$TabFader.play("Options")
 	emit_signal("main_to_options")
 	$Info.align = Label.ALIGN_LEFT
 
@@ -19,6 +21,7 @@ func _on_PlayREALLY_pressed():
 	$SceneFader.play("Play")
 
 func _on_Return_2_Main_pressed():
+	$TabFader.play_backwards("Play")
 	emit_signal("main_to_play")
 	$Info.align = Label.ALIGN_CENTER
 
@@ -30,6 +33,7 @@ func _on_Quit_Pressed():
 	$SceneFader.play("Quit")
 
 func _on_Options_2_Main_Pressed():
+	$TabFader.play_backwards("Options")
 	emit_signal("main_to_options")
 	$Info.align = Label.ALIGN_CENTER
 
