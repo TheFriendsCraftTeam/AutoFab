@@ -1,34 +1,49 @@
 extends Control
 
-export var percent = 0.0
+export(float, EXP, 0, 100, 0.01) var percent
+onready var disk_node = get_node("Disks")
 
 signal done()
 
-func _ready():
-	var select = floor(rand_range(0, 1))
+func _ready() -> void:
+	raise()
+
+func activate(select:int = -1):
+	percent = 0
+	raise()
+	show()
+	get_tree().paused = true
+	set_process(true)
 	
-	if select == 0 or select == 1:
-		$Disks.show()
-		
+	if select == -1:
+		select = round(rand_range(1, 1))
+	
+	match select:
+		0:
+			disk_node.hide()
+			disk_node.get_node("Animation").play("Start")
+		1:
+			disk_node.show()
+			disk_node.get_node("Animation").play("Start")
 	
 
 func _process(delta):
-	$Disks/ProgressBar.value = percent
-	
+	disk_node.get_node("ProgressBar").value = percent
+	percent += delta * 4
 
 func _on_animation_started(anim_name):
 	pass 
 
 
 func _on_Animation_animation_finished(anim_name):
-	if anim_name == "Loop" and percent == 100:
-		$Disks/Animation.play("End")
-		
-	elif anim_name == "End":
+	if anim_name == "End":
 		hide()
-		get_tree().queue_delete(self)
-		
-	elif anim_name == "Loop" and percent < 100:
-		$Disks/Animation.play("Loop")
-		
+		get_tree().paused = false
+		percent = 0
+		set_process(false)
+	elif (anim_name == "Loop") and (percent >= 100):
+		disk_node.get_node("Animation").play("End")
+	elif (anim_name == "Loop") and (percent < 100):
+		disk_node.get_node("Animation").play("Loop")
+		#percent += 25
 	

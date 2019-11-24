@@ -18,7 +18,7 @@ func _on_Options_Pressed():
 
 func _on_PlayREALLY_pressed():
 	print("Fading to level selection...")
-	$SceneFader.play("Play")
+	get_node("/root/Loading").activate(1)
 
 func _on_Return_2_Main_pressed():
 	$TabFader.play_backwards("Play")
@@ -30,14 +30,14 @@ func _on_Level_Options_pressed():
 
 func _on_Quit_Pressed():
 	print("Quitting...")
-	$SceneFader.play("Quit")
+	get_node("/root/Loading").activate(0)
 
 func _on_Options_2_Main_Pressed():
 	$TabFader.play_backwards("Options")
 	emit_signal("main_to_options")
 	$Info.align = Label.ALIGN_CENTER
 
-func _on_SceneFader_animation_finished(anim_name: String) -> void:
+func animation_finished(anim_name: String) -> void:
 	if anim_name == "Quit":
 		print("Animation finished!!!")
 		get_tree().quit()

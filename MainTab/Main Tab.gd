@@ -29,8 +29,8 @@ func _ready() -> void:
 	ProjectSettings.set("FriendsCraft/user/Type", user.type)
 	ProjectSettings.set("FriendsCraft/user/Username", user.name)
 	ProjectSettings.set("FriendsCraft/user/Password", user.password)
+	
+	$"/root/Loading".hide()
+	
 
 
-
-#func _on_button_Hoover(on) -> void:
-	#$GUI/Mouse.hoover(on)

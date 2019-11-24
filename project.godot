@@ -37,6 +37,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Mouse="*res://Assets/Instances/GUI/Mouse.tscn"
+Loading="*res://Scenes/Loading/Loading.tscn"
 
 [debug]
 
