@@ -193,6 +193,10 @@ sneak={
  ]
 }
 
+[memory]
+
+limits/message_queue/max_size_kb=2097152
+
 [physics]
 
 3d/physics_engine="Bullet"

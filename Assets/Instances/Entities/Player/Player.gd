@@ -44,14 +44,14 @@ export var max_falling_speed:float = -40.0
 
 var grav = gravity
 
-export var walk_speed:float = 4.0
-export var run_speed:float = 6.0
-export var sprint_speed:float = 10.0
-export var sneak_speed:float = 1.0
+export var walk_speed:float = 2.0
+export var run_speed:float = 4.0
+export var sprint_speed:float = 8.0
+export var sneak_speed:float = 0.5
 export var accel_power:float = 2.0
 export var deaccel_power:float = 3.0
 
-export var jump_power:float = 16.0
+export var jump_power:float = 10.0
 
 
 func _ready():

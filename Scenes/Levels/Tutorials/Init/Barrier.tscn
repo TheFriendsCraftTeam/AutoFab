@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 1, 0.784314, 1 )
+emission_enabled = true
+emission = Color( 0, 1, 0.784314, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+custom_aabb = AABB( -0.27, -0.34, -0.42, 3.12, 2.11, 1.83 )
+size = Vector3( 0.2, 0.2, 0.2 )
+
+[node name="Barrier" type="Spatial"]
+
+[node name="Right" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Right"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="SpotLight" type="SpotLight" parent="Right"]
+transform = Transform( -4.2222e-008, -0.258819, 0.965926, -1.13133e-008, 0.965926, 0.258819, -1, 0, -4.37114e-008, 2, 0.4, 0 )
+light_color = Color( 0, 1, 0.784314, 1 )
+light_specular = 1.0
+spot_range = 3.0
+spot_attenuation = 0.450625
+spot_angle = 30.0
+spot_angle_attenuation = 0.366021

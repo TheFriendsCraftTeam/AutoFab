@@ -32,5 +32,6 @@ func _ready() -> void:
 	
 	$"/root/Loading".hide()
 	
+	$"/root/Loading".connect("done", $GUI, "animation_finished")
 
 

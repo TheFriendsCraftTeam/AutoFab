@@ -11,6 +11,7 @@
 shader = ExtResource( 3 )
 shader_param/lightness = 2.0
 shader_param/blury = 2.0
+shader_param/alpha = null
 shader_param/vignette = ExtResource( 4 )
 
 [sub_resource type="Animation" id=2]

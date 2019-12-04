@@ -48,11 +48,13 @@ func get_file_lines(file: File) -> Array:#Picks up the file's text and convert i
 	return res
 
 func _ready() -> void:
+	get_node("/root/Loading").percent += 5#  25%
 	var reg = RegEx.new()
 	reg.compile("")
 	var level_file = File.new()
 	level_file.open("res://Scenes/Levels/Levels.list", File.READ)#Opens the level list
 	levels = get_level_by_string(get_file_lines(level_file))
+	get_node("/root/Loading").percent += 5#  30%
 	
 	for lev in levels:#Convalidates the levels
 		var f = File.new()
@@ -60,9 +62,12 @@ func _ready() -> void:
 			lev.valid = true
 		else:
 			lev.valid = false
+		get_node("/root/Loading").percent += 15 / levels.size()#  45%
 	
 	for level in levels:
 		if level.valid:
 			print(level.name)
+	get_node("/root/Loading").percent = 50#  50%
+	
 
 

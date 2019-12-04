@@ -17,8 +17,8 @@ func _input(event):
 		
 	
 	if Input.is_action_just_pressed("esc"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		get_tree().change_scene("res://Main Tab/Main Tab.tscn")
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().change_scene("res://MainTab/MainTab.tscn")
 		
 	
 	if Input.is_action_just_pressed("jump"):
