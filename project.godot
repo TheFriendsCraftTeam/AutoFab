@@ -36,6 +36,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Konsole="*res://Assets/Instances/Entities/Konsole/Konsole.tscn"
 Mouse="*res://Assets/Instances/GUI/Mouse.tscn"
 Loading="*res://Scenes/Loading/Loading.tscn"
 
@@ -213,4 +214,3 @@ quality/shadow_atlas/quadrant_3_subdiv=6
 quality/filters/use_nearest_mipmap_filter=true
 environment/default_clear_color=Color( 0, 0, 0, 1 )
 quality/filters/msaa=3
-environment/default_environment="res://default_env.tres"

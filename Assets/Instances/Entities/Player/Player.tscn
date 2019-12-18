@@ -1,15 +1,21 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Instances/Entities/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Instances/Entities/Player/GUI.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Instances/Entities/Player/Bars/Life.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Instances/Entities/Player/Bars/Stamina.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Instances/Entities/Player/Bars/PauseMenu.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/Instances/Entities/Player/Konsole/Konsole.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/ShadersAndMaterials/HelmetDistortion.shader" type="Shader" id=6]
+[ext_resource path="res://Assets/Instances/Entities/Konsole/Konsole.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CapsuleShape" id=1]
 margin = 0.001
 radius = 0.4
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 6 )
+shader_param/power = 1.0
+shader_param/offset = Vector2( 0.5, 0.5 )
 
 [node name="Player" type="KinematicBody" groups=[
 "Player",
@@ -73,14 +79,31 @@ margin_right = 610.5
 margin_bottom = -140.0
 
 [node name="PauseMenu" parent="GUI" instance=ExtResource( 5 )]
+pause_mode = 2
 
-[node name="Konsole" parent="GUI" instance=ExtResource( 6 )]
-visible = false
+[node name="HelmetDistortion" type="BackBufferCopy" parent="GUI"]
+pause_mode = 2
+editor/display_folded = true
+position = Vector2( 960, 540 )
+copy_mode = 2
+rect = Rect2( -960, -540, 1920, 1080 )
+
+[node name="Dist" type="ColorRect" parent="GUI/HelmetDistortion"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -960.0
+margin_top = -540.0
+margin_right = -960.0
+margin_bottom = -540.0
 
 [node name="Label" type="Label" parent="GUI"]
 anchor_right = 1.0
 margin_bottom = 14.0
 text = "ciao"
 align = 1
+
+[node name="Konsole" parent="GUI" instance=ExtResource( 7 )]
+visible = false
 [connection signal="command" from="GUI/Konsole" to="GUI" method="_on_Konsole_command"]
 [connection signal="quitting" from="GUI/Konsole" to="GUI" method="_on_Konsole_quitting"]

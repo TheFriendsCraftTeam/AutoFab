@@ -11,7 +11,7 @@ func _input(event):
 			player_state = PAUSED
 			get_tree().paused = true#pause the game
 			$PauseMenu.show()#show the pause menu
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)#set the mouse visible
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)#set the mouse visible
 			
 			$Life.hide()#hide the bars
 			
@@ -29,7 +29,7 @@ func _input(event):
 		if player_state == NORMAL:#..and it's playing:
 			player_state = HACKING
 			get_tree().paused = true#pause the game
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)#set the mouse "free"
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)#set the mouse "free"
 			$Konsole.Start()
 			
 			$Life.hide()#hide the bars
