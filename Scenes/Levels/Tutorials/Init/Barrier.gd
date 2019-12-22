@@ -1,8 +1,6 @@
 extends Spatial
 
 
-
-
 func get_player_distance() -> float:
 	var player = get_tree().get_nodes_in_group("Player")[0]
 	var distance = to_global(translation) - to_global(player.translation)

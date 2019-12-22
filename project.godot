@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "GDScript",
+"class": "Commands",
+"language": "GDScript",
+"path": "res://Assets/Instances/Entities/Konsole/Commands.gd"
+}, {
 "base": "Node2D",
 "class": "HexaMouse",
 "language": "GDScript",
 "path": "res://Assets/Instances/GUI/Mouse.gd"
 } ]
 _global_script_class_icons={
+"Commands": "",
 "HexaMouse": "res://Assets/Textures/GUI/Mouse/Hexa16x.svg"
 }
 
@@ -193,6 +199,11 @@ sneak={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[locale]
+
+translations=PoolStringArray( "res://translation.en.translation", "res://translation.it.translation" )
+locale_filter=[ 0, [ "en", "it" ] ]
 
 [memory]
 

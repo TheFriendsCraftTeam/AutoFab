@@ -1,6 +1,6 @@
 extends KinematicBody
 
-#Cheats
+#	Cheats----------------------------------------------------------------------------
 export var can_fly: bool = false
 export var time: float = 1.0
 const SURVIVAL = 0
@@ -9,31 +9,31 @@ const HARDCORE = 2
 #export var gamemode:int = SURVIVAL
 export var speed = 2.0
 
-#Node Shortcuts
+#	Node Shortcuts--------------------------------------------------------------------
 onready var LifeBar = get_node("GUI/Life")
 onready var StaminaBar = get_node("GUI/Stamina")
 
-
-#Interactions&Items
+#	Interactions&Items----------------------------------------------------------------
 var Interactor = null
 var ExInteractor = null
 
-#Ladder
+#	Ladder----------------------------------------------------------------------------
 var climbing = false
 
-#Looking Vars
+#	Looking Vars----------------------------------------------------------------------
 var change = Vector2()
 var roty = 0
 export var mouse_sens = 0.1
 
-#Movements vars
+#	Movements vars--------------------------------------------------------------------
 var dir = Vector3()#where the player want go
 var vel = Vector3()#where the player goes
+var mov_time: float = 0.0
 
-#WalkingVars
+#	Walking Vars----------------------------------------------------------------------
 var mov_type = IDLE
 const IDLE = 0
-const WALKILNG = 1
+const WALKING = 1
 const RUNNING = 2
 const SPRINTING = 3
 const SNEAKING = 4
@@ -53,12 +53,16 @@ export var deaccel_power:float = 3.0
 
 export var jump_power:float = 10.0
 
+#	Animation vars--------------------------------------------------------------------
+export var walking_animaton_speed: float = 2.0
+export var walking_animaton_strenght: float = 0.2
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Engine.set_time_scale(time)
 
 func _process(delta):
+	#	Movements---------------------------------------------------------------------------
 	if can_fly:
 		fly(delta)
 	elif climbing:
@@ -66,6 +70,7 @@ func _process(delta):
 	else:
 		walk(delta)
 	
+	#	Interacting-------------------------------------------------------------------------
 	Interactor = $"3D/Camera/Camera/RayCast".get_collider()
 	if !Interactor == null:
 		#$GUI/Label.text = Interactor.name
@@ -102,14 +107,13 @@ func _input(event):
 				Interactor.Place("Basic/Full")
 
 func walk(delta):
-	
+	#	Floor check-------------------------------------------------------------------
 	var floor_dist: Vector3 = to_local($"3D/FloorCheck".get_collision_point())
 	var on_floor: bool = false
 	if floor_dist.y < 0 and floor_dist.y > -0.5:
 		on_floor = true
-		#translate(Vector3(0, floor_dist.y + 0.002, 0))#Force the player on ground
 	
-	
+	#	Movement Vars-----------------------------------------------------------------
 	var aim = $"3D/Camera/Camera".get_camera_transform().basis
 	
 	var Up = Input.is_action_pressed("up")
@@ -125,6 +129,7 @@ func walk(delta):
 	
 	dir = Vector3()
 	
+	#	Find direction----------------------------------------------------------------
 	if Up:
 		dir -= aim.z
 	if Down:
@@ -134,7 +139,7 @@ func walk(delta):
 	if Right:
 		dir += aim.x
 	
-	
+	#	Check moving type-------------------------------------------------------------
 	if Run and !StaminaBar.exhausted:
 		if Up:
 			mov_type = SPRINTING
@@ -151,7 +156,7 @@ func walk(delta):
 		real_speed = sneak_speed
 		StaminaBar.running = false
 	elif Up or Down or Left or Right:
-		mov_type = WALKILNG
+		mov_type = WALKING
 		real_speed = walk_speed
 		StaminaBar.running = false
 	else:
@@ -159,7 +164,13 @@ func walk(delta):
 		real_speed = walk_speed
 		StaminaBar.running = false
 	
-	$GUI/Label.text = String(String(on_floor) + " - " + String(floor_dist))
+	#	Moving animations-------------------------------------------------------------
+	if not mov_type == IDLE:
+		mov_time += delta * (dir.length() * walking_animaton_speed)
+		$"3D/Camera/Camera".translation.y = sin(delta) * walking_animaton_strenght
+	
+	#	Debug-------------------------------------------------------------------------
+	$GUI/DebugLabel.text = String(String(on_floor) + " - " + String(mov_type) + " - " + String(dir))
 	
 	dir = dir.normalized()
 	
@@ -191,7 +202,6 @@ func walk(delta):
 	if Jump and on_floor:
 		$GUI/Stamina.stamina -= 4.0
 		vel.y = jump_power
-	
 
 func climb(delta):
 	
@@ -236,7 +246,6 @@ func climb(delta):
 	
 # warning-ignore:return_value_discarded
 	move_and_slide(vel)
-	
 
 func fly(delta):
 	
@@ -281,4 +290,4 @@ func fly(delta):
 	
 # warning-ignore:return_value_discarded
 	move_and_slide(vel)
-	
+

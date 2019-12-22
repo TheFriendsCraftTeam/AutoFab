@@ -6,7 +6,7 @@ signal Hoover(on)
 signal Focus(on)
 
 export var type:Array = [2, 2]
-export var text:String = "Button"
+export var text:String = ""
 export var color: Color = Color()
 export var reloading:bool = false
 export var click_sound: AudioStream
@@ -22,7 +22,7 @@ func _process(delta):
 
 
 func Reload(hard):
-	$Label.text = text
+	$Label.text = TranslationServer.tr(text)
 	if !$AudioStreamPlayer.stream == click_sound:
 		$AudioStreamPlayer.stream = click_sound
 	
