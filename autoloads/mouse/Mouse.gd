@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name HexaMouse, "res://Assets/Textures/GUI/Mouse/Hexa16x.svg"
+class_name HexaMouse, "res://assets/textures/Hexa16x.svg"
 
 export var moving_slowness: float = 4.0
 export var animation_speed: float = 20.0

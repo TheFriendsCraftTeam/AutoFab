@@ -3,18 +3,18 @@ UI_PLAY,Play,Gioca
 UI_OPTIONS,Options,Opzioni
 UI_QUIT,Quit,Abbandona
 UI_NEW_WORLD,Create a new world,Crea un nuovo mondo
-UI_RETURN,Back,Esci
+UI_RETURN,Back,Indietro
 UI_LOAD_WORLD,Load a world,Carica un mondo
 ,,
 ,,
-PLAYER_DEATH,<!!!You died!!!>,<!!!Sei morto!!!>
-LAVA_DEATH,That wasn’t red water…,Non era acqua rossa…
-HEAT_DEATH,I think you don’t like hell,Mi sa che non ti piace l’inferno 
-FIRE_DEATH,I belive that “NOOB!!!” burns a lot,Penso che “NOOB!!!” bruci parecchio…
-COMMAND_DEATH,It seems that God doesn’t like you,Sembra che Dio non ti vuole bene…
+PLAYER_DEATH,!!!You died!!!,!!!Sei morto!!!
+LAVA_DEATH,That wasnï¿½t red waterï¿½,Non era acqua rossaï¿½
+HEAT_DEATH,I think you donï¿½t like hell,Mi sa che non ti piace lï¿½inferno
+FIRE_DEATH,I belive that ï¿½NOOB!!!ï¿½ burns a lot,Penso che ï¿½NOOB!!!ï¿½ bruci parecchioï¿½
+COMMAND_DEATH,It seems that God doesnï¿½t like you,Sembra che Dio non ti vuole beneï¿½
 BY_ENTITY_DEATH,"For your information, a %s killed you","Per informazione, ti ha ucciso un %s"
 BY_PLAYER_DEATH,You have been murdered by %s,Sei stato assassinato da %s
-BY_PLAYER_DEATH_SUPERKILL,%s ( •_•)>? you,%s ( •_•)>? tu
+BY_PLAYER_DEATH_SUPERKILL,%s ( ï¿½_ï¿½)>? you,%s ( ï¿½_ï¿½)>? tu
 FALL_DEATH,I hope that at least the fly was good,Spero che almeno il volo sia stato di tuo gradimento
 PHYS_SQUASH_DEATH,...and then who cleans?,...e poi chi pulisce?
 PHYS_CRASH_DEATH,!!!SPLAT!!!,!!!SPLAT!!!

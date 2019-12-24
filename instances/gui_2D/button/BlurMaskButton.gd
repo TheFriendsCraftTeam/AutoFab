@@ -7,7 +7,7 @@ signal Focus(on)
 
 export var type:Array = [2, 2]
 export var text:String = ""
-export var color: Color = Color()
+export var color: Color = Color(1, 0.8, 0)
 export var reloading:bool = false
 export var click_sound: AudioStream
 
@@ -32,18 +32,18 @@ func Reload(hard):
 	
 	if hard:
 		if type[0] == 1:
-			left_texture = load("res://Assets/Textures/GUI/Buttons/BlurMaskButton/Left/EdgeUp.svg")
+			left_texture = load("res://instances/gui_2D/button/Left/EdgeUp.svg")
 		elif type[0] == 2:
-			left_texture = load("res://Assets/Textures/GUI/Buttons/BlurMaskButton/Left/EdgeCenter.svg")
+			left_texture = load("res://instances/gui_2D/button/Left/EdgeCenter.svg")
 		elif type[0] == 3:
-			left_texture = load("res://Assets/Textures/GUI/Buttons/BlurMaskButton/Left/EdgeDown.svg")
+			left_texture = load("res://instances/gui_2D/button/Left/EdgeDown.svg")
 		
 		if type[1] == 1:
-			right_texture = load("res://Assets/Textures/GUI/Buttons/BlurMaskButton/Right/EdgeUp.svg")
+			right_texture = load("res://instances/gui_2D/button/Right/EdgeUp.svg")
 		elif type[1] == 2:
-			right_texture = load("res://Assets/Textures/GUI/Buttons/BlurMaskButton/Right/EdgeCenter.svg")
+			right_texture = load("res://instances/gui_2D/button/Right/EdgeCenter.svg")
 		elif type[1] == 3:
-			right_texture = load("res://Assets/Textures/GUI/Buttons/BlurMaskButton/Right/EdgeDown.svg")
+			right_texture = load("res://instances/gui_2D/button/Right/EdgeDown.svg")
 		reloading = false
 		
 		$BlurLeft.material.set_shader_param("mask", left_texture)

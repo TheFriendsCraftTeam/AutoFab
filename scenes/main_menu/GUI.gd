@@ -14,26 +14,19 @@ func _on_Options_Pressed():
 	emit_signal("main_to_options")
 	$Info.align = Label.ALIGN_LEFT
 
-func _on_PlayREALLY_pressed():
-	print("Fading to level selection...")
-	get_node("/root/Loading").activate(1)
-	
-	var lev = load("res://Scenes/Levels/LevelSelection.tscn")
-	get_node("/root/Loading").percent = 20
-	get_tree().change_scene_to(lev)
+func _on_PlayOne_Pressed():
+	pass
 
-
-func _on_Return_2_Main_pressed():
+func _on_PlayToMain_Pressed():
 	$TabFader.play_backwards("Play")
 	emit_signal("main_to_play")
 	$Info.align = Label.ALIGN_CENTER
 
-func _on_Level_Options_pressed():
+func _on_PlayTwo_Pressed():
 	print("No level here...")
 
 func _on_Quit_Pressed():
 	print("Quitting...")
-	get_node("/root/Loading").activate(0)
 	get_tree().quit()
 
 func _on_Options_2_Main_Pressed():

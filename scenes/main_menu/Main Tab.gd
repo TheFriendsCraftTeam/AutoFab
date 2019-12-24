@@ -30,8 +30,5 @@ func _ready() -> void:
 	ProjectSettings.set("FriendsCraft/user/Username", user.name)
 	ProjectSettings.set("FriendsCraft/user/Password", user.password)
 	
-	$"/root/Loading".hide()
-	
-	$"/root/Loading".connect("done", $GUI, "animation_finished")
 
 

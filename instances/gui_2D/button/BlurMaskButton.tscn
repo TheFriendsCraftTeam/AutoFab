@@ -1,31 +1,33 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Assets/Instances/GUI/Buttons/BlurMaskButton.gd" type="Script" id=1]
-[ext_resource path="res://Assets/ShadersAndMaterials/BlurMask.shader" type="Shader" id=2]
-[ext_resource path="res://Assets/Textures/GUI/Buttons/BlurMaskButton/Left/EdgeCenter.svg" type="Texture" id=3]
-[ext_resource path="res://Assets/Textures/Misc/White.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Textures/GUI/Buttons/BlurMaskButton/Right/EdgeCenter.svg" type="Texture" id=5]
+[ext_resource path="res://instances/gui_2D/button/BlurMaskButton.gd" type="Script" id=1]
+[ext_resource path="res://instances/gui_2D/button/BlurMask.shader" type="Shader" id=2]
+[ext_resource path="res://instances/gui_2D/button/Left/EdgeCenter.svg" type="Texture" id=3]
+[ext_resource path="res://assets/textures/White.png" type="Texture" id=4]
+[ext_resource path="res://instances/gui_2D/button/Right/EdgeCenter.svg" type="Texture" id=5]
 [ext_resource path="res://Assets/Fonts/HEXFont.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/blury = 3.0
-shader_param/modulate = Color( 0, 0, 0, 1 )
+shader_param/modulate = Color( 1, 0.8, 0, 1 )
+shader_param/uv_adder = Vector2( 0.2, 0 )
 shader_param/mask = ExtResource( 3 )
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/blury = 3.0
-shader_param/modulate = Color( 0, 0, 0, 1 )
-shader_param/mask = ExtResource( 4 )
+shader_param/modulate = Color( 1, 0.8, 0, 1 )
+shader_param/uv_adder = Vector2( 0, 0 )
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/blury = 3.0
-shader_param/modulate = Color( 0, 0, 0, 1 )
+shader_param/modulate = Color( 1, 0.8, 0, 1 )
+shader_param/uv_adder = Vector2( -0.2, 0 )
 shader_param/mask = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=4]
@@ -144,6 +146,30 @@ tracks/8/keys = {
 "update": 0,
 "values": [ 0.0, 30.0 ]
 }
+tracks/9/type = "value"
+tracks/9/path = NodePath("BlurLeft:material:shader_param/uv_adder")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.383333 ),
+"transitions": PoolRealArray( 0.203063, 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0 ), Vector2( 0.5, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("BlurRight:material:shader_param/uv_adder")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.0166666, 0.399967 ),
+"transitions": PoolRealArray( 0.196146, 1 ),
+"update": 0,
+"values": [ Vector2( -0.2, 0 ), Vector2( -0.5, 0 ) ]
+}
 
 [sub_resource type="Animation" id=7]
 length = 0.4
@@ -255,6 +281,30 @@ tracks/8/keys = {
 "update": 0,
 "values": [ 30, 0 ]
 }
+tracks/9/type = "value"
+tracks/9/path = NodePath("BlurLeft:material:shader_param/uv_adder")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.196146, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0 ), Vector2( 0.2, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("BlurRight:material:shader_param/uv_adder")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.196146, 1 ),
+"update": 0,
+"values": [ Vector2( -0.5, 0 ), Vector2( -0.2, 0 ) ]
+}
 
 [node name="Button" type="Control"]
 anchor_right = 0.625
@@ -285,12 +335,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -60.0
 texture = ExtResource( 4 )
-expand = true
-
-[node name="Texture" type="TextureRect" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
 expand = true
 
 [node name="Label" type="Label" parent="."]

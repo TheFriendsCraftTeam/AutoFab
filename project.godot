@@ -12,16 +12,16 @@ _global_script_classes=[ {
 "base": "GDScript",
 "class": "Commands",
 "language": "GDScript",
-"path": "res://Assets/Instances/Entities/Konsole/Commands.gd"
+"path": "res://autoloads/konsole/Commands.gd"
 }, {
 "base": "Node2D",
 "class": "HexaMouse",
 "language": "GDScript",
-"path": "res://Assets/Instances/GUI/Mouse.gd"
+"path": "res://autoloads/mouse/Mouse.gd"
 } ]
 _global_script_class_icons={
 "Commands": "",
-"HexaMouse": "res://Assets/Textures/GUI/Mouse/Hexa16x.svg"
+"HexaMouse": "res://assets/textures/Hexa16x.svg"
 }
 
 [FriendsCraft]
@@ -35,26 +35,26 @@ user/Type=0
 [application]
 
 config/name="AutoFab"
-run/main_scene="res://MainTab/MainTab.tscn"
-boot_splash/image="res://Assets/Textures/Misc/Splash.png"
+run/main_scene="res://scenes/main_menu/MainTab.tscn"
+run/low_processor_mode=true
+boot_splash/image="res://assets/textures/Splash.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
-config/icon="res://icon.png"
+config/icon="res://assets/textures/icon.png"
 
 [autoload]
 
-Konsole="*res://Assets/Instances/Entities/Konsole/Konsole.tscn"
-Mouse="*res://Assets/Instances/GUI/Mouse.tscn"
-Loading="*res://Scenes/Loading/Loading.tscn"
+Konsole="*res://autoloads/konsole/Konsole.tscn"
+Mouse="*res://autoloads/mouse/Mouse.tscn"
 
 [debug]
 
 settings/crash_handler/message="Ops"
+gdscript/completion/autocomplete_setters_and_getters=true
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
-window/size/resizable=false
 window/size/borderless=true
 window/size/fullscreen=true
 window/per_pixel_transparency/allowed=true
@@ -64,7 +64,7 @@ mouse_cursor/tooltip_position_offset=Vector2( 16, 16 )
 
 [editor]
 
-main_run_args="res://MainTab/MainTab.tscn deblog 8zero8"
+main_run_args="res://scenes/main_menu/MainTab.tscn deblog 8zero8"
 
 [input]
 
@@ -202,7 +202,7 @@ sneak={
 
 [locale]
 
-translations=PoolStringArray( "res://translation.en.translation", "res://translation.it.translation" )
+translations=PoolStringArray( "res://assets/translation/translation.en.translation", "res://assets/translation/translation.it.translation" )
 locale_filter=[ 0, [ "en", "it" ] ]
 
 [memory]

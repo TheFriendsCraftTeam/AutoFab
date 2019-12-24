@@ -9,8 +9,8 @@ var list: Dictionary = {
 	"run": {"path": NodePath(), "func_name": "", "values": []}
 }
 
-static func is_valid(command: String) -> bool:
+func is_valid(command: String) -> bool:
 	return list.has(command)
 
-static func get_commands() -> Array:
+func get_commands() -> Array:
 	return list.keys()
