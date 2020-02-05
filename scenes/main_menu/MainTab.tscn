@@ -1,11 +1,11 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://scenes/main_menu/Main Tab.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_menu/Camera3D.gd" type="Script" id=2]
 [ext_resource path="res://scenes/main_menu/Rotation planet.gd" type="Script" id=3]
 [ext_resource path="res://scenes/main_menu/GUI.gd" type="Script" id=4]
 [ext_resource path="res://assets/textures/Logo.svg" type="Texture" id=5]
-[ext_resource path="res://Assets/Fonts/NeomatrixCode.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/fonts/NeomatrixCode.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://scenes/main_menu/Label.gd" type="Script" id=7]
 [ext_resource path="res://instances/gui_2D/button/BlurMaskButton.tscn" type="PackedScene" id=8]
 [ext_resource path="res://instances/gui_2D/button/Ok.wav" type="AudioStream" id=9]
@@ -361,6 +361,7 @@ curve = SubResource( 36 )
 emission_shape = 2
 emission_box_extents = Vector3( 0.6, 0.6, 0.6 )
 gravity = Vector3( 0, 0, 0 )
+angular_velocity = 1.49184e-019
 radial_accel_curve = SubResource( 35 )
 scale_random = 1.0
 scale_curve = SubResource( 37 )
@@ -420,9 +421,13 @@ material = SubResource( 48 )
 size = Vector3( 0.4, 0.4, 0.4 )
 
 [sub_resource type="DynamicFont" id=50]
+extra_spacing_bottom = 6
 font_data = ExtResource( 6 )
 
-[sub_resource type="Animation" id=51]
+[sub_resource type="Theme" id=51]
+default_font = SubResource( 50 )
+
+[sub_resource type="Animation" id=52]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Menu:rect_position")
@@ -473,7 +478,7 @@ tracks/3/keys = {
 "values": [ Vector2( 960, 1080 ), Vector2( 1920, 1080 ) ]
 }
 
-[sub_resource type="Animation" id=52]
+[sub_resource type="Animation" id=53]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Menu:rect_position")
@@ -524,7 +529,7 @@ tracks/3/keys = {
 "values": [ Vector2( 3840, 0 ), Vector2( 1920, 0 ) ]
 }
 
-[sub_resource type="Environment" id=53]
+[sub_resource type="Environment" id=54]
 ambient_light_color = Color( 0, 0, 0.0392157, 1 )
 fog_color = Color( 1, 1, 1, 1 )
 fog_sun_color = Color( 1, 1, 1, 1 )
@@ -654,22 +659,21 @@ texture = ExtResource( 5 )
 expand = true
 
 [node name="Info" type="Label" parent="GUI"]
-anchor_left = 0.333
 anchor_top = 1.0
-anchor_right = 0.667
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.91992
-margin_top = -20.0
-margin_right = 0.0795898
-custom_fonts/font = SubResource( 50 )
+margin_left = 1920.0
+margin_top = -34.0
+margin_right = -1920.0
+theme = SubResource( 51 )
 text = "Info:"
 align = 1
 valign = 2
 script = ExtResource( 7 )
 
 [node name="TabFader" type="AnimationPlayer" parent="GUI"]
-anims/Options = SubResource( 51 )
-anims/Play = SubResource( 52 )
+anims/Options = SubResource( 52 )
+anims/Play = SubResource( 53 )
 
 [node name="Menu" type="Control" parent="GUI"]
 anchor_right = 1.0
@@ -685,7 +689,10 @@ margin_left = 360.0
 margin_top = -180.0
 margin_right = -360.0
 margin_bottom = -60.0
+type = [ 2, 2 ]
 text = "UI_PLAY"
+color = Color( 1, 0.8, 0, 1 )
+reloading = false
 click_sound = ExtResource( 9 )
 
 [node name="Options" parent="GUI/Menu" instance=ExtResource( 8 )]
@@ -696,7 +703,10 @@ margin_left = 360.0
 margin_top = 60.0
 margin_right = -360.0
 margin_bottom = 180.0
+type = [ 2, 2 ]
 text = "UI_OPTIONS"
+color = Color( 1, 0.8, 0, 1 )
+reloading = false
 click_sound = ExtResource( 10 )
 
 [node name="Quit" parent="GUI/Menu" instance=ExtResource( 8 )]
@@ -707,7 +717,11 @@ margin_left = 360.0
 margin_top = 300.0
 margin_right = -360.0
 margin_bottom = 420.0
+type = [ 2, 2 ]
 text = "UI_QUIT"
+color = Color( 1, 0.8, 0, 1 )
+reloading = false
+click_sound = null
 
 [node name="Play" type="Control" parent="GUI"]
 anchor_right = 1.0
@@ -719,7 +733,10 @@ margin_left = 840.0
 margin_top = 360.0
 margin_right = 720.0
 margin_bottom = 360.12
+type = [ 2, 2 ]
 text = "UI_NEW_WORLD"
+color = Color( 1, 0.8, 0, 1 )
+reloading = false
 click_sound = ExtResource( 9 )
 
 [node name="PlayToMain" parent="GUI/Play" instance=ExtResource( 8 )]
@@ -727,7 +744,10 @@ margin_left = 840.0
 margin_top = 480.0
 margin_right = 720.0
 margin_bottom = 480.12
+type = [ 2, 2 ]
 text = "UI_RETURN"
+color = Color( 1, 0.8, 0, 1 )
+reloading = false
 click_sound = ExtResource( 11 )
 
 [node name="PlayTwo" parent="GUI/Play" instance=ExtResource( 8 )]
@@ -735,7 +755,10 @@ margin_left = 840.0
 margin_top = 600.0
 margin_right = 720.0
 margin_bottom = 600.12
+type = [ 2, 2 ]
 text = "UI_LOAD_WORLD"
+color = Color( 1, 0.8, 0, 1 )
+reloading = false
 click_sound = ExtResource( 9 )
 
 [node name="Options" type="Control" parent="GUI"]
@@ -750,11 +773,14 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = -120.0
 margin_bottom = 120.0
+type = [ 2, 2 ]
 text = "UI_RETURN"
+color = Color( 1, 0.8, 0, 1 )
+reloading = false
 click_sound = ExtResource( 11 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 53 )
+environment = SubResource( 54 )
 [connection signal="main_to_options" from="GUI" to="3D/Camera/Camera" method="_on_GUI_main_to_options"]
 [connection signal="main_to_play" from="GUI" to="3D/Camera/Camera" method="_on_GUI_main_to_play"]
 [connection signal="Pressed" from="GUI/Menu/Play" to="GUI" method="_on_Play_Pressed"]

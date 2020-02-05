@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/selection.obj-91c417d62c54266b35cddcc3ec5316d2.mesh"
+
+[deps]
+
+files=[ "res://.import/selection.obj-91c417d62c54266b35cddcc3ec5316d2.mesh" ]
+
+source_file="res://instances/3D/player/selection.obj"
+dest_files=[ "res://.import/selection.obj-91c417d62c54266b35cddcc3ec5316d2.mesh", "res://.import/selection.obj-91c417d62c54266b35cddcc3ec5316d2.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

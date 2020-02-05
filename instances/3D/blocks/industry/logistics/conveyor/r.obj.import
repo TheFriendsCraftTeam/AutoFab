@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/r.obj-dfcf2bc767ec4b9d85f59ce5280dd93d.mesh"
+
+[deps]
+
+files=[ "res://.import/r.obj-dfcf2bc767ec4b9d85f59ce5280dd93d.mesh" ]
+
+source_file="res://instances/3D/blocks/industry/logistics/conveyor/r.obj"
+dest_files=[ "res://.import/r.obj-dfcf2bc767ec4b9d85f59ce5280dd93d.mesh", "res://.import/r.obj-dfcf2bc767ec4b9d85f59ce5280dd93d.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

@@ -9,7 +9,7 @@ const normal: int = 1
 func _on_Placed(face, block):
 	
 	if block != null:
-		var BlockPath:String = "res://Assets/Instances/Blocks/" + String(block) + ".tscn"
+		var BlockPath:String = "res://instances/3D/blocks/" + String(block) + ".tscn"
 		var BlockNode = load(BlockPath).instance()
 		add_child(BlockNode)
 		if face == 1:#Up(+y)

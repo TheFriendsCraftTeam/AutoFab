@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AutoFabWorld",
+"language": "GDScript",
+"path": "res://assets/classes/AutoFabWorld.gd"
+}, {
 "base": "GDScript",
 "class": "Commands",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://autoloads/mouse/Mouse.gd"
 } ]
 _global_script_class_icons={
+"AutoFabWorld": "",
 "Commands": "",
 "HexaMouse": "res://assets/textures/Hexa16x.svg"
 }
@@ -45,6 +51,7 @@ config/icon="res://assets/textures/icon.png"
 
 Konsole="*res://autoloads/konsole/Konsole.tscn"
 Mouse="*res://autoloads/mouse/Mouse.tscn"
+Commands="*res://autoloads/konsole/Commands.gd"
 
 [debug]
 
@@ -65,6 +72,10 @@ mouse_cursor/tooltip_position_offset=Vector2( 16, 16 )
 [editor]
 
 main_run_args="res://scenes/main_menu/MainTab.tscn deblog 8zero8"
+
+[gui]
+
+theme/custom="res://main_theme.theme"
 
 [input]
 

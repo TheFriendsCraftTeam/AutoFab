@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://main_theme.theme" type="Theme" id=1]
+[ext_resource path="res://autoloads/konsole/CommandTab.gd" type="Script" id=2]
+
+[node name="CommandTab" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="BaseButtons" type="Control" parent="."]
+margin_right = 1920.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Quit" type="Button" parent="BaseButtons"]
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+text = "Quit"
+
+[node name="Run" type="Button" parent="BaseButtons"]
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+disabled = true
+text = "Run"
+[connection signal="pressed" from="BaseButtons/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="BaseButtons/Run" to="." method="_on_Run_pressed"]

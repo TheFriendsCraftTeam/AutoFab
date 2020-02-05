@@ -4,13 +4,15 @@ class_name Commands
 var list: Dictionary = {
 	"quit": null,
 	"help": null,
-	"getvar": {"path": NodePath()},
-	"setvar": {"path": NodePath(), "value": null},
-	"run": {"path": NodePath(), "func_name": "", "values": []}
+	"var": {"path": "", "value": null},
+	"run": {"path": "", "func_name": "", "values": []}
 }
 
 func is_valid(command: String) -> bool:
-	return list.has(command)
+	for com in get_commands():
+		if ">" + com == command:
+			return true
+	return false
 
 func get_commands() -> Array:
 	return list.keys()

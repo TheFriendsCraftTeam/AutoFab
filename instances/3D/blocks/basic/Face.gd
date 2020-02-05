@@ -1,4 +1,4 @@
-extends StaticBody
+extends Area
 
 signal Placed(face, block)
 export var face_id:int = 0

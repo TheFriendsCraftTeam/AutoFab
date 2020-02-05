@@ -10,8 +10,8 @@ const HARDCORE = 2
 export var speed = 2.0
 
 #	Node Shortcuts--------------------------------------------------------------------
-onready var LifeBar = get_node("GUI/Life")
-onready var StaminaBar = get_node("GUI/Stamina")
+#onready var LifeBar = get_node("GUI/Life")
+#onready var StaminaBar = get_node("GUI/Stamina")
 
 #	Interactions&Items----------------------------------------------------------------
 var Interactor = null
@@ -58,6 +58,7 @@ export var walking_animaton_speed: float = 2.0
 export var walking_animaton_strenght: float = 0.2
 
 func _ready():
+	get_tree().get_current_scene().player = self
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Engine.set_time_scale(time)
 
@@ -73,10 +74,12 @@ func _process(delta):
 	#	Interacting-------------------------------------------------------------------------
 	Interactor = $"3D/Camera/Camera/RayCast".get_collider()
 	if !Interactor == null:
-		#$GUI/Label.text = Interactor.name
+		$"3D/Camera/Camera/RayCast/SelBox".dest_pos = $"3D/Camera/Camera/RayCast".get_collision_point()
 		if Interactor.is_in_group("Face"):
 			Interactor.selected = true
 			Interactor.Update()
+	else:
+		$"3D/Camera/Camera/RayCast/SelBox"
 	
 	if !ExInteractor == null and !ExInteractor == Interactor:
 		if ExInteractor.is_in_group("Face"):
@@ -104,7 +107,7 @@ func _input(event):
 	if Input.is_action_just_pressed("2nd"):
 		if !Interactor == null:
 			if Interactor.is_in_group("Face"):
-				Interactor.Place("Basic/Full")
+				Interactor.Place("basic/Full")
 
 func walk(delta):
 	#	Floor check-------------------------------------------------------------------
@@ -140,29 +143,29 @@ func walk(delta):
 		dir += aim.x
 	
 	#	Check moving type-------------------------------------------------------------
-	if Run and !StaminaBar.exhausted:
+	if Run:
 		if Up:
 			mov_type = SPRINTING
 			real_speed = sprint_speed
-			StaminaBar.running = true
-			StaminaBar.stamina_consuming = 32.0
+			#StaminaBar.running = true
+			#StaminaBar.stamina_consuming = 32.0
 		elif Left or Right:
 			mov_type = RUNNING
 			real_speed = run_speed
-			StaminaBar.running = true
-			StaminaBar.stamina_consuming = 16.0
+			#StaminaBar.running = true
+			#StaminaBar.stamina_consuming = 16.0
 	elif Sneak:
 		mov_type = SNEAKING
 		real_speed = sneak_speed
-		StaminaBar.running = false
+		#StaminaBar.running = false
 	elif Up or Down or Left or Right:
 		mov_type = WALKING
 		real_speed = walk_speed
-		StaminaBar.running = false
+		#StaminaBar.running = false
 	else:
 		mov_type = IDLE
 		real_speed = walk_speed
-		StaminaBar.running = false
+		#StaminaBar.running = false
 	
 	#	Moving animations-------------------------------------------------------------
 	if not mov_type == IDLE:
@@ -200,7 +203,7 @@ func walk(delta):
 	vel = move_and_slide(vel, Vector3(0, 1, 0))
 	
 	if Jump and on_floor:
-		$GUI/Stamina.stamina -= 4.0
+		#$GUI/Stamina.stamina -= 4.0
 		vel.y = jump_power
 
 func climb(delta):
